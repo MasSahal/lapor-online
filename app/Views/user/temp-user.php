@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dashboard - Lapor Online</title>
+
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="<?= base_url('public/plugins/fontawesome-free/css/all.min.css') ?>">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Tempusdominus Bootstrap 4 -->
+    <link rel="stylesheet" href="<?= base_url('public/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') ?>">
+    <!-- iCheck -->
+    <link rel="stylesheet" href="<?= base_url('public/plugins/icheck-bootstrap/icheck-bootstrap.min.css') ?>">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="<?= base_url('public/dist/css/adminlte.min.css') ?>">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="<?= base_url('public/plugins/overlayScrollbars/css/OverlayScrollbars.min.css') ?>">
+    <!-- Daterange picker -->
+    <link rel="stylesheet" href="<?= base_url('public/plugins/daterangepicker/daterangepicker.css') ?>">
+    <!-- Toastr -->
+    <link rel="stylesheet" href="<?= base_url('public/plugins/toastr/toastr.min.css') ?>">
+    <!-- SweetAlert2 -->
+    <link rel="stylesheet" href="<?= base_url('public/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css') ?>">
+    <!-- summernote -->
+    <link rel="stylesheet" href="<?= base_url('public/plugins/summernote/summernote-bs4.min.css') ?>">
+    <link rel="shortcut icon" href="<?= base_url('/public/favicon.ico') ?>" type="image/x-icon">
+    <link rel="icon" href="<?= base_url('/public/favicon.ico') ?>" type="image/x-icon">
+    <?= $this->renderSection('css'); ?>
+</head>
+
+<body class="hold-transition layout-top-nav">
+    <div class="wrapper">
+
+        <!-- Navbar -->
+        <nav class="main-header navbar navbar-expand-md navbar-dark bg-dark border-bottom-0">
+            <div class="container">
+                <a href="<?= base_url('/user'); ?>" class="navbar-brand px-2">
+                    <!-- <!-- <img src="<?= base_url('/public/img/logo-white.svg') ?>" alt="" class="img-fluid" style="width:30px"> -->
+                    <span class="brand-text font-weight-bold">Lapor</span> Online <sup><small>ID</small></sup>
+                </a>
+
+                <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse order-3" id="navbarCollapse">
+                    <!-- Left navbar links -->
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a href="<?= base_url('/user') ?>" class="nav-link active">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= base_url('/user/pengaduan-saya') ?>" class="nav-link">Pengaduan</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">Statistik</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Right navbar links -->
+                <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
+                    <!-- Notifications Dropdown Menu -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" data-toggle="dropdown" href="#">
+                            <i class="far fa-bell"></i>
+                            <span class="badge badge-warning navbar-badge">15</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                            <span class="dropdown-header">15 Notifications</span>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" class="dropdown-item">
+                                <i class="fas fa-envelope mr-2"></i> 4 new messages
+                                <span class="float-right text-muted text-sm">3 mins</span>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" class="dropdown-item">
+                                <i class="fas fa-users mr-2"></i> 8 friend requests
+                                <span class="float-right text-muted text-sm">12 hours</span>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" class="dropdown-item">
+                                <i class="fas fa-file mr-2"></i> 3 new reports
+                                <span class="float-right text-muted text-sm">2 days</span>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" data-toggle="dropdown" href="#">
+                            <i class="fa fa-user"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                            <span class="dropdown-header font-weight-bold">Halo, Mas Sahal</span>
+                            <div class="dropdown-divider"></div>
+                            <a href="<?= base_url('/user/pengaduan-saya') ?>" class="dropdown-item">
+                                <i class="fa fa-file-alt fa-fw mr-2"></i> Pengaduan Saya
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" class="dropdown-item">
+                                <i class="fa fa-user-cog fa-fw mr-2"></i> Ubah Profile
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" class="dropdown-item">
+                                <i class="fa fa-cogs fa-fw mr-2"></i> Pengaturan
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" class="dropdown-item dropdown-footer bg-danger" data-toggle="modal" data-target="#logout"><i class="fa fa-sign-out-alt"></i> Logout</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!-- /.navbar -->
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+
+            <!-- Main content -->
+            <?= $this->renderSection('content'); ?>
+
+            <!-- /.content -->
+        </div>
+
+        <!-- Main Footer -->
+        <footer class="main-footer">
+            <div class="float-right d-none d-sm-inline">
+                Anything you want
+            </div>
+            <strong>Copyright &copy; 2014-2020 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+        </footer>
+    </div>
+    <!-- ./wrapper -->
+
+    <!-- Modal Logout-->
+    <div class="modal fade" id="logout" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+        <div class="modal-dialog border-radius-0" role="document">
+            <div class="card rounded-0">
+                <div class="modal-body">
+                    <div class="text-center p-3 m-3">
+                        <h4>Yakin mau mengakhiri sesi?</h4>
+                        <br>
+                        <button class="btn rounded-0 btn-outline-secondary" data-dismiss="modal" aria-label="Close">Tidak</button>
+                        &nbsp;
+                        <button class="btn rounded-0 btn-danger" href="<?= base_url('/user/log-out') ?>" role="button">Akhiri sekarang!</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="<?= base_url('public/plugins/jquery/jquery.min.js') ?>"></script>
+    <!-- jQuery UI 1.11.4 -->
+    <script src="<?= base_url('public/plugins/jquery-ui/jquery-ui.min.js') ?>"></script>
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script>
+        $.widget.bridge('uibutton', $.ui.button)
+    </script>
+    <!-- Bootstrap 4 -->
+    <script src="<?= base_url('public/plugins/bootstrap/js/bootstrap.bundle.min.js') ?>"></script>
+    <!-- ChartJS -->
+    <script src="<?= base_url('public/plugins/chart.js/Chart.min.js') ?>"></script>
+    <!-- jQuery Knob Chart -->
+    <script src="<?= base_url('public/plugins/jquery-knob/jquery.knob.min.js') ?>"></script>
+    <!-- daterangepicker -->
+    <script src="<?= base_url('public/plugins/moment/moment.min.js') ?>"></script>
+    <script src="<?= base_url('public/plugins/daterangepicker/daterangepicker.js') ?>"></script>
+    <!-- Tempusdominus Bootstrap 4 -->
+    <script src="<?= base_url('public/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') ?>"></script>
+    <!-- Summernote -->
+    <script src="<?= base_url('public/plugins/summernote/summernote-bs4.min.js') ?>"></script>
+    <!-- overlayScrollbars -->
+    <script src="<?= base_url('public/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') ?>"></script>
+    <!-- AdminLTE App -->
+    <script src="<?= base_url('public/dist/js/adminlte.js') ?>"></script>
+    <!-- Toastr -->
+    <script src="<?= base_url('public/plugins/toastr/toastr.min.js') ?>"></script>
+    <script src="<?= base_url('public/plugins/toastr/toastr-opt.js') ?>"></script>
+    <!-- SweetAlert2 -->
+    <script src="<?= base_url('public/plugins/sweetalert2/sweetalert2.min.js') ?>"></script>
+
+
+    <script>
+        <?php if (isset($_SESSION['msg_suc'])) { ?>
+            toastr.success('<?= $_SESSION['msg_suc']; ?>')
+        <?php } elseif (isset($_SESSION['msg_err'])) { ?>
+            toastr.error('<?= $_SESSION['msg_err']; ?>')
+        <?php } ?>
+    </script>
+    <?= $this->renderSection('js'); ?>
+</body>
+
+</html>
