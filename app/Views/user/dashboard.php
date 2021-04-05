@@ -57,7 +57,7 @@
                     </div>
                     <small class="text-center">Perhatikan Cara Menyampaikan Pengaduan Yang Baik dan Benar <span><button type="button" data-toggle="modal" data-target="#info" class="btn btn-sm btn-outline-info btn-flat font-weight-bold">?</button></span></small>
                     <br>
-                    <form action="<?= base_url('/user/do-pengaduan') ?>" method="post" enctype="multipart/form-data" id="form-validate">
+                    <form action="<?= base_url('/user/pengaduan/insert') ?>" method="post" enctype="multipart/form-data" id="form-validate">
                         <div class="form-group">
                             <label for="subjek">Judul Pengaduan</label>
                             <input type="hidden" name="nik" value="<?= session()->nik; ?>">
@@ -69,30 +69,22 @@
                         </div>
                         <div class="form-group">
                             <label for="kategori">Kategori Pengaduan</label>
-                            <select class="form-control form-control-lg rounded-0" name="kategori" id="kategori">
+                            <select class="form-control form-control-lg rounded-0 select2" name="kategori" id="kategori">
                                 <option value="null">- Pilih Kategori Pengaduan -</option>
                                 <?php foreach ($kategori as $k) :; ?>
                                     <option value="<?= $k->id_kategori; ?>"><?= $k->kategori; ?></option>
                                 <?php endforeach; ?>
                             </select>
                         </div>
+                        <div class="form-group">
+                            <label for="file">Masukan Foto</label>
+                            <input type="file" class="form-control-file btn btn-default rounded-0" name="file" id="file" placeholder="">
+                        </div>
                         <br>
                         <div class="row">
-                            <div class="col-md-4 col-sm-12">
-                                <div class="custom-file ">
-                                    <label class="custom-file-label rounded-0" for="file" name="file"></label>
-                                    <input type="file" class="custom-file-input rounded-0" id="file">
-                                    <small class="help-block">Max. 2MB | JPG-PNG</small>
-                                </div>
-                                <!-- <div class="form-group">
-                                    <div class="btn btn-default btn-file rounded-0">
-                                        <i class="fas fa-paperclip"></i> Lampiran Pendukung
-                                        <input type="file" name="file">
-                                    </div>
-                                    <p class="help-block">Max. 2MB</p>
-                                </div> -->
+                            <div class="col-md-8 col-sm-12">
                             </div>
-                            <div class="col-md-4"></div>
+                            <!-- <div class="col-md-4"></div> -->
                             <div class="col-md-4 col-sm-12">
                                 <button type="submit" name="" id="" class="btn btn-info btn-md btn-block rounded-0">Lapor!</button>
                             </div>
@@ -160,7 +152,7 @@
 <div class="card rounded-0 p-4 text-center border-0 bg-info mb-0">
     <div class="m-md-4">
         <h4 style="font-family:sans-serif">JUMLAH PENGADUAN SAAT INI</h4>
-        <h2 class="font-weight-bold counter display-3"><?= number_format(24999); ?></h2>
+        <h2 class="font-weight-bold counter display-3"><?= number_format($jml_pengaduan); ?></h2>
     </div>
 </div>
 
@@ -228,11 +220,11 @@
 <script src="<?= base_url('public/plugins/bs-custom-file-input/bs-custom-file-input.min.js') ?>"></script>
 <script>
     //Initialize Select2 Elements
-    $('.kategori').select2({
-        theme: 'bootstrap4'
-    });
-    $(function() {
-        bsCustomFileInput.init();
+    4(document).ready(function() {
+        $('.select2').select2();
+        $(function() {
+            bsCustomFileInput.init();
+        });
     });
 </script>
 

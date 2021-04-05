@@ -13,13 +13,13 @@
 <?= $this->section('breadcrumb'); ?>
 <div class="row mb-2">
     <div class="col-sm-6">
-        <h1 class="m-0">Data Akun Petugas</h1>
+        <h1 class="m-0">Data Akun Admin</h1>
     </div><!-- /.col -->
     <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="<?= base_url('/admin/dashboard') ?>">Dashboard</a></li>
-            <li class="breadcrumb-item"><a href="<?= base_url('/admin/account/petugas') ?>">Account</a></li>
-            <li class="breadcrumb-item active">Petugas</li>
+            <li class="breadcrumb-item"><a href="<?= base_url('/admin/account/admin') ?>">Account</a></li>
+            <li class="breadcrumb-item active">Admin</li>
         </ol>
     </div>
 </div>
@@ -54,8 +54,8 @@
                                 <td><?= $a->email ?></td>
                                 <td><?= $a->telp ?></td>
                                 <td>
-                                    <button type="button" class="badge badge-warning border-0" data-toggle="modal" data-target="#edit_<?= $a->id_petugas; ?>"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</button>
-                                    <button type="button" class="badge badge-danger border-0" data-toggle="modal" data-target="#hapus_<?= $a->id_petugas; ?>">Hapus</button>
+                                    <a href="#" class="badge badge-warning" id="edit" data-toggle="modal" data-target="#edit_<?= $a->id_petugas; ?>">Edit</a>
+                                    <a href="#" class="badge badge-danger" id="hapus" data-toggle="modal" data-target="#hapus_<?= $a->id_petugas; ?>">Hapus</a>
                                 </td>
                             </tr>
 
@@ -66,7 +66,7 @@
                                         <div class="modal-body">
                                             <form action="<?= base_url('admin/account/petugas/delete') ?>" method="post">
                                                 <div class="text-center p-3 m-3">
-                                                    <strong>Yakin ingin menghapus petugas : <span class="text-muted"><?= $a->nama_petugas ?></span> ?</strong>
+                                                    <strong>Yakin ingin menghapus admin : <span class="text-muted"><?= $a->nama_petugas ?></span> ?</strong>
                                                     <br>
                                                     <small>Tidakan tidak dapat diurungkan!</small>
                                                     <br><br>
@@ -107,7 +107,7 @@
                                                             <label for="telp">Phone</label>
                                                             <input type="number" class="form-control" name="telp" id="telp" value="<?= $a->telp; ?>">
                                                             <input type="hidden" name="id_petugas" value="<?= $a->id_petugas ?>">
-                                                            <input type="hidden" name="role" value="petugas">
+                                                            <input type="hidden" name="role" value="admin">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -136,7 +136,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Tambah Akun Petugas</h5>
+                <h5 class="modal-title">Tambah Akun Administrator</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -167,7 +167,7 @@
                                 <label for="password">Password</label>
                                 <input type="password" class="form-control" name="password" id="password">
                             </div>
-                            <input type="hidden" value="petugas" name="role">
+                            <input type="hidden" value="admin" name="role">
                         </div>
                     </div>
                 </div>

@@ -33,7 +33,7 @@
 	<div class="wrapper">
 
 		<!-- Navbar -->
-		<nav class="main-header navbar navbar-expand navbar-white navbar-dark bg-info text-sm border-bottom-0">
+		<nav class="main-header navbar navbar-expand navbar-white navbar-dark bg-secondary text-sm border-bottom-0">
 			<!-- Left navbar links -->
 			<ul class="navbar-nav">
 				<li class="nav-item">
@@ -52,12 +52,12 @@
 						<strong class="dropdown-item" disabled>Hi, <?= session()->nama; ?>
 						</strong>
 						<div class="dropdown-divider"></div>
-						<a href="<?= base_url('/admin/my-profile') ?>" class="dropdown-item">
+						<a href="<?= base_url('/petugas/my-profile') ?>" class="dropdown-item">
 							<i class="fa fa-user-edit mr-2"></i>
 							Ubah Profile
 						</a>
 						<div class="dropdown-divider"></div>
-						<a href="<?= base_url('/admin/logout') ?>#" class="dropdown-item dropdown-footer bg-secondary">Log-out</a>
+						<a href="<?= base_url('/petugas/logout') ?>#" class="dropdown-item dropdown-footer bg-secondary">Log-out</a>
 					</div>
 				</li>
 			</ul>
@@ -74,7 +74,7 @@
 						<img src="<?= base_url('public/img/logo.svg') ?>" alt="User Image">
 					</div>
 					<div class="info">
-						<a href="<?= base_url('/admin/dashboard') ?>#" class="d-block h4">Lapor Online</a>
+						<a href="<?= base_url('/petugas/dashboard') ?>" class="d-block h4">Lapor Online</a>
 					</div>
 				</div>
 
@@ -82,42 +82,16 @@
 				<nav class="mt-2">
 					<ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 						<li class="nav-item">
-							<a href="<?= base_url('admin/dashboard') ?>" class="nav-link <?= ($act == "Dashboard") ? "active" : "" ?>">
+							<a href="<?= base_url('petugas/dashboard') ?>" class="nav-link <?= ($act == "Dashboard") ? "active" : "" ?>">
 								<i class="nav-icon fa fa-home" aria-hidden="true"></i>
 								<p>
 									Dashboard
 								</p>
 							</a>
 						</li>
-						<li class="nav-header">ACCOUNT</li>
+						<li class="nav-header">LAPORAN</li>
 						<li class="nav-item">
-							<a href="<?= base_url('admin/account/users') ?>" class="nav-link <?= ($act == "Masyarakat") ? "active" : "" ?>"">
-								<i class=" nav-icon fa fa-users"></i>
-								<p>
-									Masyarakat
-								</p>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a href="<?= base_url('admin/account/petugas') ?>" class="nav-link <?= ($act == "Petugas") ? "active" : "" ?>"">
-								<i class=" nav-icon fa fa-user-friends"></i>
-								<p>
-									Petugas
-								</p>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a href="<?= base_url('admin/account/admin') ?>" class="nav-link <?= ($act == "Admin") ? "active" : "" ?>"">
-								<i class=" nav-icon fas fa-user-shield "></i>
-								<p>
-									Admin
-								</p>
-							</a>
-						</li>
-						<li class=" nav-header">LAPORAN
-						</li>
-						<li class="nav-item">
-							<a href="<?= base_url('admin/pengaduan') ?>" class="nav-link <?= ($act == "Pengaduan") ? "active" : "" ?>">
+							<a href="<?= base_url('petugas/pengaduan') ?>" class="nav-link <?= ($act == "Pengaduan") ? "active" : "" ?>">
 								<i class="nav-icon fas fa-file-archive    "></i>
 								<p>
 									Pengaduan
@@ -125,18 +99,10 @@
 							</a>
 						</li>
 						<li class="nav-item">
-							<a href="<?= base_url('admin/kategori') ?>" class="nav-link <?= ($act == "Kategori") ? "active" : "" ?>">
+							<a href="<?= base_url('petugas/kategori') ?>" class="nav-link <?= ($act == "Kategori") ? "active" : "" ?>">
 								<i class="nav-icon fa fa-server" aria-hidden="true"></i>
 								<p>
 									Kategori
-								</p>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a href="<?= base_url('admin/pengaduan/generate-laporan') ?>" class="nav-link <?= ($act == "Laporan") ? "active" : "" ?>">
-								<i class="nav-icon fa fa-download" aria-hidden="true"></i>
-								<p>
-									Generate Laporan
 								</p>
 							</a>
 						</li>

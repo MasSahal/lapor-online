@@ -13,12 +13,13 @@
 <?= $this->section('breadcrumb'); ?>
 <div class="row mb-2">
     <div class="col-sm-6">
-        <h1 class="m-0">Data User</h1>
+        <h1 class="m-0">Data Akun Masyarakat</h1>
     </div><!-- /.col -->
     <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="#">Account</a></li>
-            <li class="breadcrumb-item active">User</li>
+            <li class="breadcrumb-item"><a href="<?= base_url('/admin/dashboard') ?>">Dashboard</a></li>
+            <li class="breadcrumb-item"><a href="<?= base_url('/admin/account/users') ?>">Account</a></li>
+            <li class="breadcrumb-item active">Masyarakat</li>
         </ol>
     </div>
 </div>
@@ -33,8 +34,6 @@
         <div class="card">
             <div class="card-body box-card-body">
                 <div class="table-responsive" id="users_data">
-                    <!-- <button onclick="get_users()">Refresh</button> -->
-                    <!-- data table disini -->
                     <table class="table table-stripped table-head-fixed" id="table">
                         <thead>
                             <tr>
@@ -43,7 +42,7 @@
                                 <th>Nama</th>
                                 <th>Email</th>
                                 <th>Phone</th>
-                                <th>Aksi</th>
+                                <!-- <th>Aksi</th> -->
                             </tr>
                         </thead>
                         <tbody>
@@ -53,19 +52,18 @@
                                     <td><?= $i += 1; ?></td>
                                     <td>
                                         <?= $u->nik ?>
-                                        </tdid=>
+                                    </td>
                                     <td><?= $u->nama ?></td>
                                     <td><?= $u->email ?></td>
                                     <td><?= $u->telp ?></td>
-                                    <td>
+                                    <!-- <td>
                                         <a href="#" class="badge badge-warning" id="edit" data-nik="<?= $u->nik; ?>">Edit</a>
                                         <a href="#" class="badge badge-danger" id="hapus" data-nik="<?= $u->nik; ?>" onclick="return confirm('yakin hapus ?')">Hapus</a>
-                                    </td>
+                                    </td> -->
                                 </tr>
                             <?php }; ?>
                         </tbody>
                     </table>
-                    <div class="btn-users mt-2"></div>
                 </div>
             </div>
         </div>
@@ -120,7 +118,6 @@
         </div>
     </div>
 </div>
-</div>
 
 <!-- Modal Terms-->
 <div class="modal fade" id="aboutTerms" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
@@ -157,13 +154,13 @@
 <script src="<?= base_url('public/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') ?>"></script>
 <script src="<?= base_url('public/plugins/datatables-responsive/js/dataTables.responsive.min.js') ?>"></script>
 <script src="<?= base_url('public/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') ?>"></script>
-<script src="<?= base_url('public/plugins/datatables-buttons/js/dataTables.buttons.min.js') ?>"></script>
+<!-- <script src="<?= base_url('public/plugins/datatables-buttons/js/dataTables.buttons.min.js') ?>"></script>
 <script src="<?= base_url('public/plugins/datatables-buttons/js/buttons.bootstrap4.min.js') ?>"></script>
 <script src="<?= base_url('public/plugins/jszip/jszip.min.js') ?>"></script>
 <script src="<?= base_url('public/plugins/pdfmake/pdfmake.min.js') ?>"></script>
 <script src="<?= base_url('public/plugins/pdfmake/vfs_fonts.js') ?>"></script>
 <script src="<?= base_url('public/plugins/datatables-buttons/js/buttons.html5.min.js') ?>"></script>
-<script src="<?= base_url('public/plugins/datatables-buttons/js/buttons.print.min.js') ?>"></script>
+<script src="<?= base_url('public/plugins/datatables-buttons/js/buttons.print.min.js') ?>"></script> -->
 <!-- Toastr -->
 <script src="<?= base_url('public/plugins/toastr/toastr.min.js') ?>"></script>
 <script src="<?= base_url('public/plugins/toastr/toastr-opt.js') ?>"></script>
@@ -199,26 +196,26 @@
             },
             "lengthChange": true,
             "autoWidth": false,
-            "buttons": [{
-                    extend: 'pdf',
-                    className: 'btn-secondary'
-                },
-                {
-                    extend: 'excel',
-                    className: 'btn-secondary'
-                },
-                {
-                    extend: 'print',
-                    className: 'btn-secondary'
-                },
-                {
-                    text: 'Tambah',
-                    action: function(e, dt, node, config) {
-                        $('#add_user').modal('show');
-                    },
-                    className: "btn-info"
-                }
-            ],
+            // "buttons": [{
+            //         extend: 'pdf',
+            //         className: 'btn-secondary'
+            //     },
+            //     {
+            //         extend: 'excel',
+            //         className: 'btn-secondary'
+            //     },
+            //     {
+            //         extend: 'print',
+            //         className: 'btn-secondary'
+            //     },
+            //     {
+            //         text: 'Tambah',
+            //         action: function(e, dt, node, config) {
+            //             $('#add_user').modal('show');
+            //         },
+            //         className: "btn-info"
+            //     }
+            // ],
             "lengthMenu": [
                 [5, 10, 25],
                 [5, 10, 25]

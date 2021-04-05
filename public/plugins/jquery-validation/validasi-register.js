@@ -8,7 +8,6 @@ $(document).ready(function () {
         nik: {
           required: true,
           minlength: 16,
-          maxlength: 17,
         },
         username: {
           required: true,
@@ -31,7 +30,6 @@ $(document).ready(function () {
         nik: {
           required: "Kolom NIK wajib di isi!",
           minlength: "Masukan NIK dengan benar!",
-          maxlength: "Masukan NIK dengan benar!",
         },
         username: {
           required: "Kolom nama wajib di isi!",

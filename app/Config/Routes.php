@@ -41,44 +41,105 @@ $routes->get('/pdf', 'HomeController::export');
 $routes->get('/register', 'HomeController::register');
 $routes->post('/auth', 'HomeController::auth_user');
 $routes->post('/register-member', 'HomeController::do_register');
+$routes->post('admin/auth', 'HomeController::auth_petugas');
 
 
 //route user
-$routes->group('user', function ($routes) {
+$routes->group('user', ['filter' => 'ceklogin'], function ($routes) {
 	$routes->get('', 'UserController::index');
 	$routes->get('dashboard', 'UserController::index');
 	$routes->get('pengaduan-saya', 'UserController::pengaduan_saya');
+	// $routes->get('pengaduan-saya/(:num)/view', 'UserController::pengaduan_detail/$1');
+	$routes->get('pengaduan-saya/(:num)/print', 'UserController::print_pengaduan/$1');
+
 	$routes->get('log-out', 'HomeController::log_out');
 
-	$routes->post('do-pengaduan', 'UserController::do_pengaduan');
+	$routes->post('pengaduan/insert', 'UserController::insert_pengaduan');
+	$routes->post('pengaduan/delete', 'UserController::delete_pengaduan');
+	$routes->post('pengaduan/print', 'UserController::print_pengaduan');
+
+	//profile saya
+	$routes->get('profile', 'UserController::profile');
+	$routes->post('profile/edit', 'UserController::do_edit_profile');
+	$routes->post('profile/change-pass', 'UserController::ganti_password_profile');
 });
 
 
 //route petugas
-$routes->group('petugas', function ($routes) {
+$routes->group('petugas', ['filter' => 'ceklogin'], function ($routes) {
 	$routes->get('dashboard', 'PetugasController::index');
+	$routes->get('logout', 'HomeController::log_out');
+
+	//data laporan
+	$routes->get('pengaduan', 'PetugasController::data_pengaduan');
+	$routes->get('pengaduan/print', 'PetugasController::print_pengaduan');
+	$routes->get('pengaduan/(:num)/detail', 'PetugasController::detail_pengaduan/$1');
+	$routes->post('pengaduan/verifikasi', 'PetugasController::verifikasi_pengaduan');
+	$routes->post('pengaduan/kirim-tanggapan', 'PetugasController::kirim_tanggapan');
+	$routes->post('pengaduan/selesaikan', 'PetugasController::selesaikan_pengaduan');
+
+	//kategori
+	$routes->get('kategori', 'PetugasController::kategori');
+	$routes->post('kategori/insert', 'PetugasController::insert_kategori');
+	$routes->post('kategori/edit', 'PetugasController::edit_kategori');
+	$routes->post('kategori/delete', 'PetugasController::delete_kategori');
+
+	//profile saya
+	$routes->get('my-profile', 'PetugasController::profile');
+	$routes->post('my-profile/edit', 'PetugasController::do_edit_profile');
+	$routes->post('my-profile/change-pass', 'PetugasController::ganti_password_profile');
+
+	$routes->get('pengaduan/(:num)/print', 'PetugasController::print_detail_pengaduan/$1');
 });
 
 
 //route admin
-$routes->group('admin', function ($routes) {
-	$routes->post('auth', 'HomeController::auth_petugas');
+$routes->group('admin', ['filter' => 'ceklogin'], function ($routes) {
 	$routes->get('dashboard', 'AdminController::index');
+	$routes->get('logout', 'HomeController::log_out');
 	$routes->get('pdf', 'AdminController::export');
 
 	//account user
 	$routes->get('account/users', 'AdminController::account_users');
 	$routes->get('account/table/users', 'AdminController::table_users');
 	$routes->post('account/user/(:num)/delete', 'AdminController::delete_user');
+	$routes->post('account/petugas/delete', 'AdminController::delete_petugas');
 
 	//account petugas
 	$routes->get('account/petugas', 'AdminController::account_petugas');
 	$routes->get('account/table/petugas', 'AdminController::table_petugas');
-	$routes->post('register-petugas', 'AdminController::do_register');
+	$routes->post('account/register-petugas', 'AdminController::do_register');
+	$routes->post('account/edit-petugas', 'AdminController::do_edit_account');
+	$routes->post('account/petugas/(:num)/delete', 'AdminController::delete_petugas');
+
+	//account petugas
+	$routes->get('account/admin', 'AdminController::account_admin');
+	$routes->get('account/table/petugas', 'AdminController::table_petugas');
+	$routes->post('account/register-petugas', 'AdminController::do_register');
+	$routes->post('account/edit-petugas', 'AdminController::do_edit_account');
 	$routes->post('account/petugas/(:num)/delete', 'AdminController::delete_petugas');
 
 	//data laporan
-	$routes->get('laporan', 'AdminController::data_laporan');
+	$routes->get('pengaduan', 'AdminController::data_pengaduan');
+	$routes->get('pengaduan/generate-laporan', 'AdminController::generate_pengaduan');
+	$routes->get('pengaduan/print', 'AdminController::print_pengaduan');
+	$routes->get('pengaduan/(:num)/detail', 'AdminController::detail_pengaduan/$1');
+	$routes->get('pengaduan/(:num)/print', 'AdminController::print_detail_pengaduan/$1');
+	$routes->post('pengaduan/delete', 'AdminController::delete_pengaduan');
+	$routes->post('pengaduan/verifikasi', 'AdminController::verifikasi_pengaduan');
+	$routes->post('pengaduan/kirim-tanggapan', 'AdminController::kirim_tanggapan');
+	$routes->post('pengaduan/selesaikan', 'AdminController::selesaikan_pengaduan');
+
+	//kategori
+	$routes->get('kategori', 'AdminController::kategori');
+	$routes->post('kategori/insert', 'AdminController::insert_kategori');
+	$routes->post('kategori/edit', 'AdminController::edit_kategori');
+	$routes->post('kategori/delete', 'AdminController::delete_kategori');
+
+	//profile saya
+	$routes->get('my-profile', 'AdminController::profile');
+	$routes->post('my-profile/edit', 'AdminController::do_edit_profile');
+	$routes->post('my-profile/change-pass', 'AdminController::ganti_password_profile');
 });
 
 

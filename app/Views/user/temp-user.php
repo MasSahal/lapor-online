@@ -57,9 +57,6 @@
                         <li class="nav-item">
                             <a href="<?= base_url('/user/pengaduan-saya') ?>" class="nav-link">Pengaduan</a>
                         </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">Statistik</a>
-                        </li>
                     </ul>
                 </div>
 
@@ -67,48 +64,22 @@
                 <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
                     <!-- Notifications Dropdown Menu -->
                     <li class="nav-item dropdown">
-                        <a class="nav-link" data-toggle="dropdown" href="#">
-                            <i class="far fa-bell"></i>
-                            <span class="badge badge-warning navbar-badge">15</span>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                            <span class="dropdown-header">15 Notifications</span>
-                            <div class="dropdown-divider"></div>
-                            <a href="#" class="dropdown-item">
-                                <i class="fas fa-envelope mr-2"></i> 4 new messages
-                                <span class="float-right text-muted text-sm">3 mins</span>
-                            </a>
-                            <div class="dropdown-divider"></div>
-                            <a href="#" class="dropdown-item">
-                                <i class="fas fa-users mr-2"></i> 8 friend requests
-                                <span class="float-right text-muted text-sm">12 hours</span>
-                            </a>
-                            <div class="dropdown-divider"></div>
-                            <a href="#" class="dropdown-item">
-                                <i class="fas fa-file mr-2"></i> 3 new reports
-                                <span class="float-right text-muted text-sm">2 days</span>
-                            </a>
-                            <div class="dropdown-divider"></div>
-                            <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
-                        </div>
+
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link" data-toggle="dropdown" href="#">
-                            <i class="fa fa-user"></i>
+
+                            <span>Halo, <?= session()->nama; ?> <i class="fa fa-user fa-fw"></i></span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                            <span class="dropdown-header font-weight-bold">Halo, Mas Sahal</span>
+                            <span class="dropdown-header font-weight-bold">Halo, <?= session()->nama; ?></span>
                             <div class="dropdown-divider"></div>
                             <a href="<?= base_url('/user/pengaduan-saya') ?>" class="dropdown-item">
                                 <i class="fa fa-file-alt fa-fw mr-2"></i> Pengaduan Saya
                             </a>
                             <div class="dropdown-divider"></div>
-                            <a href="#" class="dropdown-item">
+                            <a href="<?= base_url('/user/profile') ?>" class="dropdown-item">
                                 <i class="fa fa-user-cog fa-fw mr-2"></i> Ubah Profile
-                            </a>
-                            <div class="dropdown-divider"></div>
-                            <a href="#" class="dropdown-item">
-                                <i class="fa fa-cogs fa-fw mr-2"></i> Pengaturan
                             </a>
                             <div class="dropdown-divider"></div>
                             <a href="#" class="dropdown-item dropdown-footer bg-danger" data-toggle="modal" data-target="#logout"><i class="fa fa-sign-out-alt"></i> Logout</a>
@@ -130,25 +101,25 @@
 
         <!-- Main Footer -->
         <footer class="main-footer">
-            <div class="float-right d-none d-sm-inline">
-                Anything you want
+            <div class="text-center">
+                <strong>Copyright &copy; 2021 <a href="<?= base_url() ?>">Lapor Online</a>.</strong> All rights reserved.
             </div>
-            <strong>Copyright &copy; 2014-2020 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
         </footer>
     </div>
     <!-- ./wrapper -->
 
+
     <!-- Modal Logout-->
     <div class="modal fade" id="logout" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
         <div class="modal-dialog border-radius-0" role="document">
-            <div class="card rounded-0">
+            <div class="modal-content rounded-0">
                 <div class="modal-body">
                     <div class="text-center p-3 m-3">
                         <h4>Yakin mau mengakhiri sesi?</h4>
                         <br>
                         <button class="btn rounded-0 btn-outline-secondary" data-dismiss="modal" aria-label="Close">Tidak</button>
                         &nbsp;
-                        <button class="btn rounded-0 btn-danger" href="<?= base_url('/user/log-out') ?>" role="button">Akhiri sekarang!</button>
+                        <a class="btn rounded-0 btn-danger" href="<?= base_url('/user/log-out') ?>">Akhiri sekarang!</a>
                     </div>
                 </div>
             </div>
@@ -156,7 +127,7 @@
     </div>
 
     <!-- jQuery -->
-    <script src="<?= base_url('public/plugins/jquery/jquery.min.js') ?>"></script>
+    <script src=" <?= base_url('public/plugins/jquery/jquery.min.js') ?>"></script>
     <!-- jQuery UI 1.11.4 -->
     <script src="<?= base_url('public/plugins/jquery-ui/jquery-ui.min.js') ?>"></script>
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
@@ -188,11 +159,25 @@
 
 
     <script>
-        <?php if (isset($_SESSION['msg_suc'])) { ?>
-            toastr.success('<?= $_SESSION['msg_suc']; ?>')
-        <?php } elseif (isset($_SESSION['msg_err'])) { ?>
-            toastr.error('<?= $_SESSION['msg_err']; ?>')
-        <?php } ?>
+        $(function() {
+            var Toast = Swal.mixin({
+                toast: true,
+                position: 'top-center',
+                showConfirmButton: true,
+                timer: 5000
+            });
+            <?php if (isset($_SESSION['msg_suc'])) { ?>
+                swal.fire({
+                    icon: 'success',
+                    title: '<?= $_SESSION['msg_suc']; ?>'
+                })
+            <?php } elseif (isset($_SESSION['msg_err'])) { ?>
+                swal.fire({
+                    icon: 'error',
+                    title: '<?= $_SESSION['msg_err']; ?>'
+                })
+            <?php } ?>
+        })
     </script>
     <?= $this->renderSection('js'); ?>
 </body>

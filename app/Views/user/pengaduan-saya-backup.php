@@ -34,7 +34,7 @@
                     </div>
                     <div class="card-footer">
                         <h3 class="profile-username text-center font-weight-bold"><?= session()->nama; ?></h3>
-                        <p class="text-muted text-center"><?= session()->username; ?></p>
+                        <p class="text-muted text-center">@<?= session()->username; ?></p>
                     </div>
                 </div>
             </div>
@@ -68,139 +68,142 @@
             </div>
 
             <?php if (isset($_GET['detail'])) {; ?>
+                <?php foreach ($pengaduan as $p) :; ?>
 
-                <div class="col-md-9">
-                    <div class="card">
-                        <div class="card-header">
+                    <div class="col-md-9">
+                        <div class="card">
+                            <div class="card-header">
 
-                            <a href="<?= base_url('/user/pengaduan-saya') ?>" class="btn btn-tool" title="Previous"><i class="fas fa-chevron-left"></i> Kembali</a>
+                                <a href="<?= base_url('/user/pengaduan-saya') ?>" class="btn btn-tool" title="Previous"><i class="fas fa-chevron-left"></i> Kembali</a>
 
-                            <div class="float-right">
-                                <span class="text-muted"><?= $pengaduan->tgl_pengaduan; ?></span>
-                            </div>
-                            <div class="card-tools">
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="mailbox-read-info pt-0">
-                                <div class="row">
-                                    <div class="col-md-8 col-sm-12">
-                                        <table class="table table-borderless table-sm">
-                                            <tr>
-                                                <th>Dari</th>
-                                                <td>:</td>
-                                                <td>
-                                                    <?= $pengaduan->nama; ?>
-                                                </td>
-                                            </tr>
-                                            <tr class="py-2">
-                                                <th>Subjek</th>
-                                                <td>:</td>
-                                                <td>
-                                                    <?= $pengaduan->subjek_pengaduan; ?>
-                                                </td>
-                                            </tr>
-                                            <tr class="py-4">
-                                                <th>Status</th>
-                                                <td>:</td>
-                                                <td>
-                                                    <?php if ($pengaduan->status == 'terkirim') { ?>
-                                                        <span class="text-danger">Terkirim</span>
-
-                                                        <!-- // -->
-                                                    <?php  } elseif ($pengaduan->status == 'terverifikasi') { ?>
-                                                        <span class="text-warning">Terverifikasi</span>
-
-                                                        <!-- // -->
-                                                    <?php  } elseif ($pengaduan->status == 'diproses') { ?>
-                                                        <span class="text-primary">Sedang Diproses</span>
-
-                                                        <!-- // -->
-                                                    <?php  } elseif ($pengaduan->status == 'selesai') { ?>
-                                                        <span class="text-success">Selesai</span>
-
-                                                        <!-- // -->
-                                                    <?php  } ?>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </div>
+                                <div class="float-right">
+                                    <span class="text-muted"><?= $p->tgl_pengaduan; ?></span>
+                                </div>
+                                <div class="card-tools">
                                 </div>
                             </div>
-                            <div class="mailbox-read-message">
-                                <h4 class="h4"><?= $pengaduan->subjek_pengaduan; ?></h4>
-                                <p><?= str_break($pengaduan->isi_laporan); ?></p>
-                            </div>
-                        </div>
-                        <div class="card-footer bg-white">
-                            <ul class="mailbox-attachments d-flex align-items-stretch clearfix" style="padding:10px">
+                            <div class="card-body">
+                                <div class="mailbox-read-info pt-0">
+                                    <div class="row">
+                                        <div class="col-md-8 col-sm-12">
+                                            <table class="table table-borderless table-sm">
+                                                <tr>
+                                                    <th>Dari</th>
+                                                    <td>:</td>
+                                                    <td>
+                                                        <?= $p->nama; ?>
+                                                    </td>
+                                                </tr>
+                                                <tr class="py-2">
+                                                    <th>Subjek</th>
+                                                    <td>:</td>
+                                                    <td>
+                                                        <?= $p->subjek_pengaduan; ?>
+                                                    </td>
+                                                </tr>
+                                                <tr class="py-4">
+                                                    <th>Status</th>
+                                                    <td>:</td>
+                                                    <td>
+                                                        <?php if ($p->status == 'terkirim') { ?>
+                                                            <span class="text-danger">Terkirim</span>
 
-                                <li>
-                                    <a href="#" data-toggle="modal" data-target="#detail">
-                                        <span class="mailbox-attachment-icon has-img"><img src="<?= base_url('/public/img/pengaduan/' . $pengaduan->foto) ?>" alt="Attachment"></span>
-                                    </a>
-                                    <div class="mailbox-attachment-info">
-                                        <a href="#" class="mailbox-attachment-name" data-toggle="modal" data-target="#detail"><i class="fas fa-image "></i> Image.jpg</a>
-                                        <span class="mailbox-attachment-size clearfix mt-1">
-                                            <span><?= format_size(filesize(ROOTPATH . 'public/img/pengaduan/' . $pengaduan->foto)) ?>b</span>
-                                            <a href="<?= base_url('/public/img/pengaduan/' . $pengaduan->foto) ?>" download="<?= $pengaduan->foto; ?>" class="btn btn-default btn-sm float-right" id="download" title="Download Image">
-                                                <i class="fas fa-cloud-download-alt"></i>
-                                            </a>
-                                        </span>
-                                    </div>
-                                </li>
+                                                            <!-- // -->
+                                                        <?php  } elseif ($p->status == 'terverifikasi') { ?>
+                                                            <span class="text-warning">Terverifikasi</span>
 
-                                <!-- Modal -->
-                                <div class="modal fade" id="detail" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-                                    <div class="modal-dialog modal-lg" role="document">
-                                        <div class="modal-content rounded-0">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title">Foto Pengaduan</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <i class="fa fa-times" aria-hidden="true"></i>
-                                                </button>
-                                            </div>
-                                            <div class="modal-header">
-                                                <img data-dismiss="modal" aria-label="Close" src="<?= base_url('/public/img/pengaduan/' . $pengaduan->foto) ?>" class="img-fluid" alt="<?= $pengaduan->foto ?>">
-                                            </div>
+                                                            <!-- // -->
+                                                        <?php  } elseif ($p->status == 'diproses') { ?>
+                                                            <span class="text-primary">Sedang Diproses</span>
+
+                                                            <!-- // -->
+                                                        <?php  } elseif ($p->status == 'selesai') { ?>
+                                                            <span class="text-success">Selesai</span>
+
+                                                            <!-- // -->
+                                                        <?php  } ?>
+                                                    </td>
+                                                </tr>
+                                            </table>
                                         </div>
                                     </div>
                                 </div>
-                            </ul>
-                        </div>
+                                <div class="mailbox-read-message">
+                                    <h4 class="h4"><?= $p->subjek_pengaduan; ?></h4>
+                                    <p><?= str_break($p->isi_laporan); ?></p>
+                                </div>
+                            </div>
+                            <div class="card-footer bg-white">
+                                <ul class="mailbox-attachments d-flex align-items-stretch clearfix" style="padding:10px">
 
-                        <!-- button print dan delete -->
-                        <div class="card-footer">
-                            <?php if ($pengaduan->status == 'terkirim') { ?>
-                                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#hapus"><i class="far fa-trash-alt"></i> Delete</button>
+                                    <li>
+                                        <a href="#" data-toggle="modal" data-target="#detail">
+                                            <span class="mailbox-attachment-icon has-img"><img src="<?= base_url('/public/img/pengaduan/' . $p->foto) ?>" alt="Attachment"></span>
+                                        </a>
+                                        <div class="mailbox-attachment-info">
+                                            <a href="#" class="mailbox-attachment-name" data-toggle="modal" data-target="#detail"><i class="fas fa-image "></i> Image.jpg</a>
+                                            <span class="mailbox-attachment-size clearfix mt-1">
+                                                <span><?= format_size(filesize(ROOTPATH . 'public/img/pengaduan/' . $p->foto)) ?>b</span>
+                                                <a href="<?= base_url('/public/img/pengaduan/' . $p->foto) ?>" download="<?= $p->foto; ?>" class="btn btn-default btn-sm float-right" id="download" title="Download Image">
+                                                    <i class="fas fa-cloud-download-alt"></i>
+                                                </a>
+                                            </span>
+                                        </div>
+                                    </li>
 
-                                <!-- Modal tandai selesai -->
-                                <div class="modal fade" id="hapus" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-                                    <div class=" modal-dialog border-radius-0" role="document">
-                                        <div class="modal-content rounded-0">
-                                            <div class="modal-body">
-                                                <form action="<?= base_url('user/pengaduan/delete') ?>" method="post">
-                                                    <div class="text-center p-3">
-                                                        <h4>Hapus pengaduan ini?</h4>
-                                                        <small>Tidakan tidak dapat diurungkan!</small>
-                                                        <br><br>
-                                                        <input type="hidden" name="id_pengaduan" value="<?= $pengaduan->id_pengaduan; ?>">
-                                                        <button class="btn btn-outline-secondary rounded-0" data-dismiss="modal" aria-label="Close">Batalkan</button>
-                                                        &nbsp;
-                                                        <button type="submit" class="btn btn-danger rounded-0">Hapus Sekarang!</button>
-                                                    </div>
-                                                </form>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="detail" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                                        <div class="modal-dialog modal-lg" role="document">
+                                            <div class="modal-content rounded-0">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title">Foto Pengaduan</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <i class="fa fa-times" aria-hidden="true"></i>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-header">
+                                                    <img data-dismiss="modal" aria-label="Close" src="<?= base_url('/public/img/pengaduan/' . $p->foto) ?>" class="img-fluid" alt="<?= $p->foto ?>">
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            <?php }; ?>
-                            <a href="<?= base_url('/user/pengaduan/' . $pengaduan->id_pengaduan . '/print') ?>" class="btn btn-default" raeget="_blank"><i class="fas fa-print"></i> Print</a>
+
+
+                                </ul>
+                            </div>
+
+                            <!-- button print dan delete -->
+                            <div class="card-footer">
+                                <?php if ($p->status == 'terkirim') { ?>
+                                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#hapus"><i class="far fa-trash-alt"></i> Delete</button>
+
+                                    <!-- Modal tandai selesai -->
+                                    <div class="modal fade" id="hapus" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                                        <div class=" modal-dialog border-radius-0" role="document">
+                                            <div class="modal-content rounded-0">
+                                                <div class="modal-body">
+                                                    <form action="<?= base_url('user/pengaduan/delete') ?>" method="post">
+                                                        <div class="text-center p-3">
+                                                            <h4>Hapus pengaduan ini?</h4>
+                                                            <small>Tidakan tidak dapat diurungkan!</small>
+                                                            <br><br>
+                                                            <input type="hidden" name="id_pengaduan" value="<?= $p->id_pengaduan; ?>">
+                                                            <button class="btn btn-outline-secondary rounded-0" data-dismiss="modal" aria-label="Close">Batalkan</button>
+                                                            &nbsp;
+                                                            <button type="submit" class="btn btn-danger rounded-0">Hapus Sekarang!</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php }; ?>
+                                <a href="<?= base_url('/user/pengaduan/' . $p->id_pengaduan . '/print') ?>" class="btn btn-default" raeget="_blank"><i class="fas fa-print"></i> Print</a>
+                            </div>
+                            <!-- /.card-footer -->
                         </div>
-                        <!-- /.card-footer -->
                     </div>
-                </div>
-
+                <?php endforeach ?>
             <?php } else { ?>
                 <div class="col-md-9 col-sm-12">
                     <div class="card rounded-0">

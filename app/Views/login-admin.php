@@ -27,6 +27,23 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <body class="hold-transition login-page">
     <div class="login-box">
 
+
+        <?php if (isset($_SESSION['msg_suc'])) { ?>
+            <div class="alert alert-success alert-dismissible fade show mb-2 rounded-0" role="alert">
+                <?= session()->msg_suc; ?>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        <?php } elseif (isset($_SESSION['msg_err'])) { ?>
+            <div class="alert alert-warning alert-dismissible fade show mb-2 rounded-0" role="alert">
+                <?= session()->msg_err; ?>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        <?php } ?>
+
         <!-- /.login-logo -->
         <div class="card">
             <div class="card-body login-card-body rounded-sm">
@@ -81,14 +98,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="<?= base_url('public/plugins/toastr/toastr-opt.js') ?>"></script>
     <!-- SweetAlert2 -->
     <script src="<?= base_url('public/plugins/sweetalert2/sweetalert2.min.js') ?>"></script>
-
+    <!-- 
     <script>
         <?php if (isset($_SESSION['msg_suc'])) { ?>
             toastr.success('<?= $_SESSION['msg_suc']; ?>')
         <?php } elseif (isset($_SESSION['msg_err'])) { ?>
             toastr.error('<?= $_SESSION['msg_err']; ?>')
         <?php } ?>
-    </script>
+    </script> -->
 
 </body>
 

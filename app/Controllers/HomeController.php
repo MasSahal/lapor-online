@@ -50,21 +50,23 @@ class HomeController extends BaseController
 		$password 	= $this->request->getPost('password');
 		$username 	= strtolower(str_replace(" ", "", $name));
 
+		$cek = $this->userModel->where('nik', $nik)->first();
 
-		$data = ([
-			'nik' 		=> $nik,
-			'nama' 		=> $name,
-			'username' 	=> $username,
-			// 'email' 	=> $email,
-			'password' 	=> password_hash($password, PASSWORD_BCRYPT)
-		]);
+		// dd(!$cek);
+		if (!$cek) {
+			$data = ([
+				'nik' 		=> $nik,
+				'nama' 		=> $name,
+				'username' 	=> $username,
+				'password' 	=> password_hash($password, PASSWORD_BCRYPT)
+			]);
 
-		$add = $this->userModel->insert($data);
-
-		if ($add) {
+			$add = $this->userModel->insert($data);
+			$this->session->setFlashdata('msg_suc', 'Selamat pendaftaran berhasil!');
 			return redirect()->to(base_url());
 		} else {
-			echo "ERROR";
+			$this->session->setFlashdata('msg_err', 'Maaf NIK telah terdaftar!, silahkan login');
+			return redirect()->to(base_url());
 		}
 	}
 
@@ -86,6 +88,7 @@ class HomeController extends BaseController
 				$ses = ([
 					'is_login' 		=> true,
 					'role_login' 	=> 'user',
+					'nama' 			=> $cek->nama,
 					'username' 		=> $cek->username,
 					'email'			=> $cek->email,
 					'nik' 			=> $cek->nik
@@ -125,6 +128,8 @@ class HomeController extends BaseController
 					$data = ([
 						'is_login' 		=> true,
 						'role_login' 	=> 'admin',
+						'id_petugas' 	=> $cek->id_petugas,
+						'nama' 			=> $cek->nama_petugas,
 						'username' 		=> $cek->username,
 						'email' 		=> $cek->email
 					]);
@@ -140,6 +145,8 @@ class HomeController extends BaseController
 					$data = ([
 						'is_login' 		=> true,
 						'role_login' 	=> 'petugas',
+						'id_petugas' 	=> $cek->id_petugas,
+						'nama' 			=> $cek->nama_petugas,
 						'username' 		=> $cek->username,
 						'email' 		=> $cek->email
 					]);

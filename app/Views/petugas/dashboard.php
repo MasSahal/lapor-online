@@ -1,4 +1,4 @@
-<?php $this->extend('admin/temp-admin'); ?>
+<?php $this->extend('petugas/temp-petugas'); ?>
 
 <!-- Content Header (Page header) -->
 
@@ -9,7 +9,7 @@
 	</div><!-- /.col -->
 	<div class="col-sm-6">
 		<ol class="breadcrumb float-sm-right">
-			<li class="breadcrumb-item active"><a href="<?= base_url('admin/dashboard') ?>">Dashboard</a></li>
+			<li class="breadcrumb-item active"><a href="<?= base_url('petugas/dashboard') ?>">Dashboard</a></li>
 		</ol>
 	</div><!-- /.col -->
 </div><!-- /.row -->

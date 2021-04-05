@@ -17,6 +17,7 @@ $(document).ready(function () {
         },
         file: {
           required: true,
+          extension: "jpg|jpeg|png",
         },
       },
       messages: {
@@ -31,7 +32,8 @@ $(document).ready(function () {
           required: "Kolom wajib di isi!",
         },
         file: {
-          required: "Mohon sertakan dokumen pendukung!",
+          required: "Mohon sertakan foto pendukung!",
+          extension: "File tidak valid!",
         },
       },
       errorElement: "span",
