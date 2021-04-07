@@ -49,8 +49,9 @@ $routes->group('user', ['filter' => 'ceklogin'], function ($routes) {
 	$routes->get('', 'UserController::index');
 	$routes->get('dashboard', 'UserController::index');
 	$routes->get('pengaduan-saya', 'UserController::pengaduan_saya');
+	$routes->get('syarat-ketentuan', 'UserController::ketentuan');
 	// $routes->get('pengaduan-saya/(:num)/view', 'UserController::pengaduan_detail/$1');
-	$routes->get('pengaduan-saya/(:num)/print', 'UserController::print_pengaduan/$1');
+	$routes->get('pengaduan-saya/(:num)/print', 'UserController::print_detail_pengaduan/$1');
 
 	$routes->get('log-out', 'HomeController::log_out');
 
@@ -127,6 +128,7 @@ $routes->group('admin', ['filter' => 'ceklogin'], function ($routes) {
 	$routes->get('pengaduan/(:num)/print', 'AdminController::print_detail_pengaduan/$1');
 	$routes->post('pengaduan/delete', 'AdminController::delete_pengaduan');
 	$routes->post('pengaduan/verifikasi', 'AdminController::verifikasi_pengaduan');
+	$routes->post('pengaduan/tolak', 'AdminController::tolak_pengaduan');
 	$routes->post('pengaduan/kirim-tanggapan', 'AdminController::kirim_tanggapan');
 	$routes->post('pengaduan/selesaikan', 'AdminController::selesaikan_pengaduan');
 

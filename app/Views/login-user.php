@@ -59,7 +59,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <input type="password" class="form-control rounded-0" name="password" id="password">
                     </div>
                     <p class="mb-1">
-                        <a href="<?= base_url('/forgot-password') ?>">Lupa password</a>
+                        <!-- <a href="<?= base_url('/forgot-password') ?>">Lupa password</a> -->
                     </p>
                     <div class="social-auth-links text-center mb-3">
                         <button type="submit" class="btn btn-block btn-primary rounded-0">

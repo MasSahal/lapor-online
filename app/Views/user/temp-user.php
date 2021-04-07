@@ -57,6 +57,9 @@
                         <li class="nav-item">
                             <a href="<?= base_url('/user/pengaduan-saya') ?>" class="nav-link">Pengaduan</a>
                         </li>
+                        <li class="nav-item">
+                            <a href="<?= base_url('/user/syarat-ketentuan') ?>" class="nav-link">Ketentuan Layanan</a>
+                        </li>
                     </ul>
                 </div>
 
@@ -121,6 +124,49 @@
                         &nbsp;
                         <a class="btn rounded-0 btn-danger" href="<?= base_url('/user/log-out') ?>">Akhiri sekarang!</a>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="info" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content rounded-0">
+                <div class="modal-header">
+                    <h5>Tata cara pelaporan pengaduan</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        Untuk mengirim aduan melalui aplikasi Lapor Online!, baik di android maupun iOS, masyarakat mesti melakukan sejumlah langkah sebagaimana perincian berikut ini.
+                    </p>
+                    <ul>
+                        <li>
+                            Pertama, untuk login ke aplikasi Lapor Online, masyarakat harus mendaftar terlebih dahulu menggunakan NIK.
+                        </li>
+                        <li>
+                            Kedua, mengisi form pengaduan dengan bahasa Indonesia yang baik dan benar, tidak disarankan menggunakan bahasa daerah yang multi tafsir maupun kalimat yang terbelit belit.
+                        </li>
+                        <li>
+                            Ketiga, masyarakat diharuskan memilih kategori secara spesifik. Pada tahap ini, masyarakat bisa memilih kategori pengaduan agar pengaduan dapat terarah dengan baik.
+                        </li>
+                        <li>
+                            Keempat, masyarakat wajib mengirim bukti foto/lampiran pengaduan supaya pengaduan dapat di tindak lanjuti sesuai data yang valid
+                        </li>
+                        <li>
+                            Kelima, jika semua kolom di aplikasi Lapor! sudah terisi, masyarakat dapat mengirimkan aduan atau laporannya.
+                        </li>
+                    </ul>
+                    <p>
+                        Setelah menuliskan pengaduan dokumen masyarakat akan diverifikasi dan di tindak lanjuti serta mendapatkan tanggapan dari pihak berwenang.
+                    </p>
                 </div>
             </div>
         </div>

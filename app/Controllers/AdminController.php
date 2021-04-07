@@ -184,7 +184,7 @@ class AdminController extends BaseController
 
             $data = ([
                 'act'           => 'Pengaduan',
-                'title'         => 'Detail Pengaduan ID ' . $id . '- Lapor Online',
+                'title'         => 'Detail Pengaduan ID ' . $id . ' - Lapor Online',
                 'pengaduan'     => $pengaduan
             ]);
             $cek_tanggapan = $this->tanggapanModel->getTanggapanWithPetugas($id);
@@ -216,6 +216,21 @@ class AdminController extends BaseController
         } else {
             $this->session->setFlashdata("msg_suc", "Data pengaduan tidak berhasil dihapus!");
             return redirect()->to(base_url('/admin/pengaduan'));
+        }
+    }
+
+    public function tolak_pengaduan()
+    {
+        $id_pengaduan = $this->request->getPost('id_pengaduan');
+        $data = (["status" => 'ditolak']);
+        $upp = $this->pengaduanModel->update($id_pengaduan, $data);
+
+        if ($upp) {
+            $this->session->setFlashdata("msg_suc", "Selamat, Pengaduan berhasil ditolak !");
+            return redirect()->to(base_url('/admin/pengaduan/' . $id_pengaduan . '/detail'));
+        } else {
+            $this->session->setFlashdata("msg_err", "Maaf, Pengaduan tidak berhasil ditolak !");
+            return redirect()->to(base_url('/admin/pengaduan/' . $id_pengaduan . '/detail'));
         }
     }
 

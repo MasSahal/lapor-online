@@ -7,7 +7,7 @@
     </div><!-- /.col -->
     <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="<?= base_url('/petugas/home') ?>">Home</a></li>
+            <li class="breadcrumb-item"><a href="<?= base_url('/petugas/dashboard') ?>">Home</a></li>
             <li class="breadcrumb-item"><a href="<?= base_url('/petugas/pengaduan') ?>">Pengaduan</a></li>
             <li class="breadcrumb-item active">Pengaduan ID <?= $pengaduan->id_pengaduan; ?></li>
         </ol>
@@ -20,7 +20,7 @@
 <div class="row">
     <div class="col-md-12">
         <div class="card rounded-0">
-            <div class="card-header">
+            <div class="card-header rounded-0 <?= ($pengaduan->status == "selesai") ? "bg-soft-success" : "" ?> <?= ($pengaduan->status == "ditolak") ? "bg-soft-danger" : "" ?>">
 
                 <a href="<?= base_url('/petugas/pengaduan') ?>" class="btn btn-tool" title="Previous"><i class="fas fa-chevron-left"></i> Kembali</a>
                 <div class="float-right">
@@ -34,18 +34,52 @@
                     <div class="row">
                         <div class="col-md-8 col-sm-12">
                             <table class="table table-sm table-borderless">
-                                <tr class="py-2">
-                                    <th>Subjek</th>
-                                    <td>:</td>
-                                    <td>
-                                        <?= $pengaduan->subjek_pengaduan; ?>
-                                    </td>
-                                </tr>
                                 <tr>
-                                    <th>Dari</th>
+                                    <th>Pelapor</th>
                                     <td>:</td>
                                     <td>
                                         <?= $pengaduan->nama; ?>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>NIK</th>
+                                    <td>:</td>
+                                    <td>
+                                        <?= $pengaduan->nik; ?>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Kategori</th>
+                                    <td>:</td>
+                                    <td>
+                                        <?= $pengaduan->kategori; ?>
+                                    </td>
+                                </tr>
+                                <tr class="py-4">
+                                    <th>Status</th>
+                                    <td>:</td>
+                                    <td>
+                                        <?php if ($pengaduan->status == 'terkirim') { ?>
+                                            <span class="text-info">Terkirim</span>
+
+                                            <!-- // -->
+                                        <?php  } elseif ($pengaduan->status == 'terverifikasi') { ?>
+                                            <span class="text-warning">Terverifikasi</span>
+
+                                            <!-- // -->
+                                        <?php  } elseif ($pengaduan->status == 'diproses') { ?>
+                                            <span class="text-primary">Sedang Diproses</span>
+
+                                            <!-- // -->
+                                        <?php  } elseif ($pengaduan->status == 'selesai') { ?>
+                                            <span class="text-success">Selesai</span>
+
+                                            <!-- // -->
+                                        <?php  } elseif ($pengaduan->status == 'ditolak') { ?>
+                                            <span class="text-danger">Pengaduan Ditolak</span>
+
+                                            <!-- // -->
+                                        <?php  } ?>
                                     </td>
                                 </tr>
                             </table>
@@ -67,7 +101,7 @@
                         <div class="mailbox-attachment-info">
                             <a href="#" class="mailbox-attachment-name" data-toggle="modal" data-target="#detail"><i class="fas fa-image "></i> Image.jpg</a>
                             <span class="mailbox-attachment-size clearfix mt-1">
-                                <span><?= number_format(filesize(ROOTPATH . 'public/img/pengaduan/' . $pengaduan->foto), 0) ?>b</span>
+                                <span><?= format_size(filesize(ROOTPATH . 'public/img/pengaduan/' . $pengaduan->foto), 0) ?>b</span>
                                 <a href="<?= base_url('/public/img/pengaduan/' . $pengaduan->foto) ?>" download="<?= $pengaduan->foto; ?>" class="btn btn-default btn-sm float-right" id="download" data-toggle="tooltip" data-placement="right" title="Download Image">
                                     <i class="fas fa-cloud-download-alt"></i>
                                 </a>
@@ -78,6 +112,12 @@
                     <!-- Modal detail foto -->
                     <div class="modal fade" id="detail" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
                         <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Foto Pengaduan</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <i class="fa fa-times" aria-hidden="true"></i>
+                                </button>
+                            </div>
                             <div class="modal-content">
                                 <img data-dismiss="modal" aria-label="Close" src="<?= base_url('/public/img/pengaduan/' . $pengaduan->foto) ?>" class="img-fluid" alt="<?= $pengaduan->foto ?>">
                             </div>
@@ -88,17 +128,18 @@
             </div>
             <?php if ($pengaduan->status == 'terkirim') {; ?>
                 <div class="card-footer">
-                    <a href="<?= base_url('/petugas/pengaduan/' . $pengaduan->id_pengaduan . '/print') ?>" target="_blank" class="btn btn-default"><i class="fa fa-print fa-fw"></i> Print</a>
+                    <a href="<?= base_url('/admin/pengaduan/' . $pengaduan->id_pengaduan . '/print') ?>" target="_blank" class="btn btn-default"><i class="fa fa-print fa-fw"></i> Print</a>
                     <div class="float-right">
+                        <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#tolak"><i class="fa fa-times" aria-hidden="true"></i> Tolak</button>
                         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#verifikasi"><i class="fas fa-shield-alt fa-fw"></i> Verifikasi</button>
                     </div>
-                    <button type="button" class="btn btn-default"><i class="far fa-trash-alt"></i> Delete</button>
+                    <!-- <button type="button" class="btn btn-default"><i class="far fa-trash-alt"></i> Delete</button> -->
 
                     <div class="modal fade" id="verifikasi" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
                         <div class=" modal-dialog border-radius-0" role="document">
                             <div class="modal-content rounded-0">
                                 <div class="modal-body">
-                                    <form action="<?= base_url('/petugas/pengaduan/verifikasi') ?>" method="post">
+                                    <form action="<?= base_url('admin/pengaduan/verifikasi') ?>" method="post">
                                         <div class="text-center p-3">
                                             <strong>Yakin ingin memverifikasi pengaduan <span class="text-muted">"<?= get_small_char($pengaduan->subjek_pengaduan, 30); ?>"</span> ?</strong>
                                             <br>
@@ -115,20 +156,20 @@
                         </div>
                     </div>
 
-                    <div class="modal fade" id="hapus" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                    <div class="modal fade" id="tolak" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
                         <div class="modal-dialog border-radius-0" role="document">
                             <div class="modal-content rounded-0">
                                 <div class="modal-body">
-                                    <form action="<?= base_url('/petugas/pengaduan/verifikasi') ?>" method="post">
+                                    <form action="<?= base_url('admin/pengaduan/tolak') ?>" method="post">
                                         <div class="text-center p-3 m-3">
-                                            <strong>Yakin ingin memverifikasi pengaduan <span class="text-muted">"<?= get_small_char($pengaduan->subjek_pengaduan, 25); ?>"</span> ?</strong>
+                                            <strong>Yakin ingin menolak pengaduan <span class="text-muted">"<?= get_small_char($pengaduan->subjek_pengaduan, 25); ?>"</span> ?</strong>
                                             <br>
                                             <small>Tidakan tidak dapat diurungkan!</small>
                                             <br><br>
                                             <input type="hidden" name="id_pengaduan" value="<?= $pengaduan->id_pengaduan; ?>">
-                                            <button class="btn btn-outline-secondary" data-dismiss="modal" aria-label="Close">Tidak</button>
+                                            <button class="btn btn-outline-secondary" data-dismiss="modal" aria-label="Close">Batalkan</button>
                                             &nbsp;
-                                            <button type="submit" class="btn btn-success">Verifikasi Sekarang!</button>
+                                            <button type="submit" class="btn btn-danger">Tolak Pengaduan ini!</button>
                                         </div>
                                     </form>
                                 </div>
@@ -237,6 +278,24 @@
                 <div class=" card-footer">
                     <a href="<?= base_url('/petugas/pengaduan/' . $pengaduan->id_pengaduan . '/print') ?>" target="_blank" class="btn btn-default"><i class="fa fa-print"></i> Print</a>
                 </div>
+
+            <?php } elseif ($pengaduan->status == 'ditolak') { ?>
+                <div class="card-footer bg-soft-danger">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table class="table table-sm table-borderless">
+                                <tr>
+                                    <th>Alasan</th>
+                                    <td>:</td>
+                                    <td>Pengaduan tidak sesuai dengan ketentuan layanan pengaduan yang berlaku.
+                                        <a href="#">Syarat dan ketentuan</a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <hr class="m-0">
             <?php }; ?>
 
         </div>

@@ -65,7 +65,7 @@
 		<!-- /.navbar -->
 
 		<!-- Main Sidebar Container -->
-		<aside class="main-sidebar sidebar-dark-primary sidebar-dark-olive text-sm align-center">
+		<aside class="main-sidebar sidebar-dark-primary sidebar-dark-info text-sm align-center">
 			<!-- Sidebar -->
 			<div class="sidebar">
 				<!-- Sidebar user panel (optional) -->
@@ -127,7 +127,7 @@
 		</div>
 
 		<footer class="main-footer text-sm">
-			<strong>Copyright &copy; 2021 <a href="<?= base_url('public/') ?>https://adminlte.io">Lapor Online</a>.</strong>
+			<strong>Copyright &copy; 2021 <a href="<?= base_url('petugas/dashboard') ?>">Lapor Online</a>.</strong>
 			All rights reserved.
 			<div class="float-right d-none d-sm-inline-block">
 				<b>Version</b> 1.0

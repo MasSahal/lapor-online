@@ -74,6 +74,7 @@
                                     <option value="terverifikasi">Terverifikasi</option>
                                     <option value="diproses">Diproses</option>
                                     <option value="selesai">Selesai</option>
+                                    <option value="ditolak">Ditolak</option>
                                 </select>
                             </div>
                         </div>
@@ -106,7 +107,8 @@
                             <?php foreach ($pengaduan as $p) :; ?>
                                 <tr>
                                     <td><?= $no += 1; ?></td>
-                                    <td class="mailbox-name"><a href="<?= base_url('/admin/account/user/' . $p->nik . '/detail') ?>" class="text-link"><?= $p->nama; ?></a></td>
+                                    <td>
+                                        <?= $p->nama; ?></td>
                                     <td class="mailbox-subject">
                                         <a href="<?= base_url('/admin/pengaduan/' . $p->id_pengaduan . '/detail') ?>" class="text-dark text-link">
                                             <b>
@@ -116,7 +118,7 @@
                                     </td>
                                     <td class="mailbox-star text-left">
                                         <?php if ($p->status == 'terkirim') { ?>
-                                            <span class="text-danger">Terkirim</span>
+                                            <span class="text-info">Terkirim</span>
 
                                             <!-- // -->
                                         <?php  } elseif ($p->status == 'terverifikasi') { ?>
@@ -129,6 +131,10 @@
                                             <!-- // -->
                                         <?php  } elseif ($p->status == 'selesai') { ?>
                                             <span class="text-success">Selesai</span>
+
+                                            <!-- // -->
+                                        <?php  } elseif ($p->status == 'ditolak') { ?>
+                                            <span class="text-danger">Ditolak</span>
 
                                             <!-- // -->
                                         <?php  } ?>

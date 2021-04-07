@@ -61,6 +61,9 @@
                                 <li class="list-group-item">
                                     <b>Selesai</b> <a class="float-right"><?= $jml_selesai; ?></a>
                                 </li>
+                                <li class="list-group-item">
+                                    <b>Ditolak</b> <a class="float-right"><span class="text-danger"><?= $jml_ditolak; ?></span></a>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -70,8 +73,8 @@
             <?php if (isset($_GET['detail'])) {; ?>
 
                 <div class="col-md-9">
-                    <div class="card">
-                        <div class="card-header">
+                    <div class="card rounded-0">
+                        <div class="card-header rounded-0 <?= ($pengaduan->status == "selesai") ? "bg-soft-success" : "" ?> <?= ($pengaduan->status == "ditolak") ? "bg-soft-danger" : "" ?>">
 
                             <a href="<?= base_url('/user/pengaduan-saya') ?>" class="btn btn-tool" title="Previous"><i class="fas fa-chevron-left"></i> Kembali</a>
 
@@ -85,19 +88,26 @@
                             <div class="mailbox-read-info pt-0">
                                 <div class="row">
                                     <div class="col-md-8 col-sm-12">
-                                        <table class="table table-borderless table-sm">
+                                        <table class="table table-sm table-borderless">
                                             <tr>
-                                                <th>Dari</th>
+                                                <th>Pelapor</th>
                                                 <td>:</td>
                                                 <td>
                                                     <?= $pengaduan->nama; ?>
                                                 </td>
                                             </tr>
-                                            <tr class="py-2">
-                                                <th>Subjek</th>
+                                            <tr>
+                                                <th>NIK</th>
                                                 <td>:</td>
                                                 <td>
-                                                    <?= $pengaduan->subjek_pengaduan; ?>
+                                                    <?= $pengaduan->nik; ?>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>Kategori</th>
+                                                <td>:</td>
+                                                <td>
+                                                    <?= $pengaduan->kategori; ?>
                                                 </td>
                                             </tr>
                                             <tr class="py-4">
@@ -105,7 +115,7 @@
                                                 <td>:</td>
                                                 <td>
                                                     <?php if ($pengaduan->status == 'terkirim') { ?>
-                                                        <span class="text-danger">Terkirim</span>
+                                                        <span class="text-info">Terkirim</span>
 
                                                         <!-- // -->
                                                     <?php  } elseif ($pengaduan->status == 'terverifikasi') { ?>
@@ -118,6 +128,10 @@
                                                         <!-- // -->
                                                     <?php  } elseif ($pengaduan->status == 'selesai') { ?>
                                                         <span class="text-success">Selesai</span>
+
+                                                        <!-- // -->
+                                                    <?php  } elseif ($pengaduan->status == 'ditolak') { ?>
+                                                        <span class="text-danger">Pengaduan Ditolak</span>
 
                                                         <!-- // -->
                                                     <?php  } ?>
@@ -169,6 +183,48 @@
                             </ul>
                         </div>
 
+                        <?php if ($pengaduan->status == 'selesai') { ?>
+                            <div class="card-footer">
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-12">
+                                        <table class="table table-sm table-borderless">
+                                            <tr>
+                                                <th>Ditanggapi Oleh</th>
+                                                <td>:</td>
+                                                <td><?= $tanggapan->nama_petugas; ?></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Tanggal</th>
+                                                <td>:</td>
+                                                <td><?= $tanggapan->tgl_tanggapan; ?></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="card p-3 shadow-none">
+                                    <p><?= str_break($tanggapan->tanggapan); ?></p>
+                                </div>
+                            </div>
+                            <hr class="m-0">
+                        <?php } elseif ($pengaduan->status == 'ditolak') { ?>
+                            <div class="card-footer bg-soft-danger">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <table class="table table-sm table-borderless">
+                                            <tr>
+                                                <th>Alasan</th>
+                                                <td>:</td>
+                                                <td>Pengaduan tidak sesuai dengan ketentuan layanan pengaduan yang berlaku.
+                                                    <a href="#">Syarat dan ketentuan</a>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr class="m-0">
+                        <?php }; ?>
+
                         <!-- button print dan delete -->
                         <div class="card-footer">
                             <?php if ($pengaduan->status == 'terkirim') { ?>
@@ -195,7 +251,7 @@
                                     </div>
                                 </div>
                             <?php }; ?>
-                            <a href="<?= base_url('/user/pengaduan/' . $pengaduan->id_pengaduan . '/print') ?>" class="btn btn-default" raeget="_blank"><i class="fas fa-print"></i> Print</a>
+                            <a href="<?= base_url('/user/pengaduan-saya/' . $pengaduan->id_pengaduan . '/print') ?>" class="btn btn-default" target="_blank"><i class="fas fa-print"></i> Print</a>
                         </div>
                         <!-- /.card-footer -->
                     </div>
@@ -210,6 +266,7 @@
                                 <li class="nav-item"><a class="nav-link rounded-0" href="#terverifikasi" data-toggle="tab">Terverifikasi</a></li>
                                 <li class="nav-item"><a class="nav-link rounded-0" href="#tindaklanjut" data-toggle="tab">Ditindak Lanjut</a></li>
                                 <li class="nav-item"><a class="nav-link rounded-0" href="#selesai" data-toggle="tab">Selesai</a></li>
+                                <li class="nav-item"><a class="nav-link rounded-0" href="#ditolak" data-toggle="tab">Ditolak</a></li>
                             </ul>
                         </div>
                         <div class="card-body">
@@ -234,7 +291,7 @@
                                                                 <a class="btn" data-toggle="modal" data-target="#del_<?= $p->id_pengaduan ?>"><i class="fa fa-trash"></i></a>
                                                             </td>
                                                             <td class="mailbox-name">
-                                                                <a href="#" class="text-link"><?= $p->nama; ?></a>
+                                                                <?= $p->nama; ?>
                                                             </td>
                                                             <td class="mailbox-subject">
                                                                 <a href="<?= base_url('/user/pengaduan-saya?detail=' . $p->id_pengaduan) ?>" class="text-link">
@@ -286,8 +343,8 @@
                                                 <tbody>
                                                     <?php foreach ($pengaduan['terverifikasi'] as $p) :; ?>
                                                         <tr>
-                                                            <td>
-                                                                <a href="#" class="text-link"><?= $p->nama; ?></a>
+                                                            <td class="mailbox-name">
+                                                                <?= $p->nama; ?>
                                                             </td>
                                                             <td class="mailbox-subject">
                                                                 <a href="<?= base_url('/user/pengaduan-saya?detail=' . $p->id_pengaduan) ?>" class="text-link">
@@ -317,8 +374,8 @@
                                             <tbody>
                                                 <?php foreach ($pengaduan['diproses'] as $p) :; ?>
                                                     <tr>
-                                                        <td>
-                                                            <a href="#" class="text-link"><?= $p->nama; ?></a>
+                                                        <td class="mailbox-name">
+                                                            <?= $p->nama; ?>
                                                         </td>
                                                         <td class="mailbox-subject">
                                                             <a href="<?= base_url('/user/pengaduan-saya?detail=' . $p->id_pengaduan) ?>" class="text-link">
@@ -348,7 +405,9 @@
                                                 <tbody>
                                                     <?php foreach ($pengaduan['selesai'] as $p) :; ?>
                                                         <tr>
-                                                            <td class="mailbox-name"><a href="#"><?= $p->nama; ?></a></td>
+                                                            <td class="mailbox-name">
+                                                                <?= $p->nama; ?>
+                                                            </td>
                                                             <td class="mailbox-subject">
                                                                 <a href="<?= base_url('/user/pengaduan-saya?detail=' . $p->id_pengaduan) ?>" class="text-link">
                                                                     <b><?= get_small_char($p->subjek_pengaduan, 25); ?></b> - <?= get_small_char($p->isi_laporan, 40); ?>
@@ -357,6 +416,62 @@
                                                             <td class="mailbox-attachment"><i class="fas fa-paperclip"></i></td>
                                                             <td class="mailbox-date"><?= time_ago($p->tgl_pengaduan); ?></td>
                                                         </tr>
+                                                    <?php endforeach; ?>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="ditolak">
+                                    <h3>Laporan Pengaduan Ditolak</h3>
+                                    <div class="card-body p-0">
+                                        <div class="table-responsive mailbox-messages">
+                                            <table class="table table-hover table-striped" id="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Aksi</th>
+                                                        <th>Nama</th>
+                                                        <th colspan="2">Subjek</th>
+                                                        <th>Tanggal</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <?php foreach ($pengaduan['ditolak'] as $p) :; ?>
+                                                        <tr class="bg-soft-danger">
+                                                            <td>
+                                                                <a class="btn" data-toggle="modal" data-target="#del_<?= $p->id_pengaduan ?>"><i class="fa fa-trash"></i></a>
+                                                            </td>
+                                                            <td class="mailbox-name">
+                                                                <?= $p->nama; ?>
+                                                            </td>
+                                                            <td class="mailbox-subject">
+                                                                <a href="<?= base_url('/user/pengaduan-saya?detail=' . $p->id_pengaduan) ?>" class="text-link">
+                                                                    <b><?= get_small_char($p->subjek_pengaduan, 25); ?></b> - <?= get_small_char($p->isi_laporan, 40); ?>
+                                                                </a>
+                                                            </td>
+                                                            <td class="mailbox-attachment"><i class="fas fa-paperclip"></i></td>
+                                                            <td class="mailbox-date"><?= time_ago($p->tgl_pengaduan); ?></td>
+                                                        </tr>
+
+                                                        <div class="modal fade" id="del_<?= $p->id_pengaduan ?>" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                                                            <div class=" modal-dialog border-radius-0" role="document">
+                                                                <div class="modal-content rounded-0">
+                                                                    <div class="modal-body">
+                                                                        <form action="<?= base_url('user/pengaduan/delete') ?>" method="post">
+                                                                            <div class="text-center p-3">
+                                                                                <h4>Ingin menghapus pengaduan <span class="text-muted">"<?= get_small_char($p->subjek_pengaduan, 25); ?>"</span> ?</h4>
+                                                                                <small>Tidakan tidak dapat diurungkan!</small>
+                                                                                <br><br>
+                                                                                <input type="hidden" name="id_pengaduan" value="<?= $p->id_pengaduan; ?>">
+                                                                                <button class="btn btn-outline-secondary rounded-0" data-dismiss="modal" aria-label="Close">Batalkan</button>
+                                                                                &nbsp;
+                                                                                <button type="submit" class="btn btn-danger rounded-0">Hapus Sekarang!</button>
+                                                                            </div>
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     <?php endforeach; ?>
                                                 </tbody>
                                             </table>

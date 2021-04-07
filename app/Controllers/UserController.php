@@ -8,12 +8,14 @@ class UserController extends BaseController
     private $userModel;
     private $pengaduanModel;
     private $kategoriModel;
+    private $tanggapanModel;
 
     public function __construct()
     {
         $this->session          = \Config\Services::session();
         $this->pengaduanModel     = new \App\Models\Pengaduan();
         $this->kategoriModel     = new \App\Models\Kategori();
+        $this->tanggapanModel     = new \App\Models\Tanggapan();
         $this->userModel        = new \App\Models\User();
     }
 
@@ -34,11 +36,20 @@ class UserController extends BaseController
         $id_pengaduan = $this->request->getGet('detail');
         if (isset($id_pengaduan)) {
             $cek = $this->pengaduanModel->getPengaduan($id_pengaduan);
+
+            //cek tanggapan
+            $cek_tanggapan = $this->tanggapanModel->getTanggapanWithPetugas($id_pengaduan);
+            if (!$cek_tanggapan) {
+                return redirect()->to(base_url('/user/pengaduan-saya'));
+            }
+
             if (!$cek) {
                 return redirect()->to(base_url('/user/pengaduan-saya'));
             }
 
+            //replace data
             $pengaduan = $cek;
+            $tanggapan = $cek_tanggapan;
 
             //jika gk di set get detail
         } else {
@@ -48,17 +59,22 @@ class UserController extends BaseController
                 'terverifikasi' =>  $this->pengaduanModel->getPengaduanNik($nik, 'terverifikasi'),
                 'diproses'      =>  $this->pengaduanModel->getPengaduanNik($nik, 'diproses'),
                 'selesai'       =>  $this->pengaduanModel->getPengaduanNik($nik, 'selesai'),
+                'ditolak'       =>  $this->pengaduanModel->getPengaduanNik($nik, 'ditolak')
             ]);
+
+            $tanggapan = false;
         }
 
         $data = ([
             'act'           => 'Pengaduan Saya',
             'pengaduan'     => $pengaduan,
+            'tanggapan'     => $tanggapan,
             'jml_all'       => $this->pengaduanModel->countData($nik),
             'jml_kirim'     => $this->pengaduanModel->countData($nik, 'terkirim'),
             'jml_verif'     => $this->pengaduanModel->countData($nik, 'terverifikasi'),
             'jml_proses'    => $this->pengaduanModel->countData($nik, 'diproses'),
-            'jml_selesai'   => $this->pengaduanModel->countData($nik, 'selesai')
+            'jml_selesai'   => $this->pengaduanModel->countData($nik, 'selesai'),
+            'jml_ditolak'   => $this->pengaduanModel->countData($nik, 'ditolak'),
         ]);
 
 
@@ -66,6 +82,11 @@ class UserController extends BaseController
 
         // dd($cek);
         return view('user/pengaduan-saya', $data);
+    }
+
+    public function ketentuan()
+    {
+        return view('user/syarat-ketentuan');
     }
 
     public function insert_pengaduan()
@@ -143,6 +164,18 @@ class UserController extends BaseController
         }
     }
 
+    public function print_detail_pengaduan($id_pengaduan)
+    {
+        $pengaduan = $this->pengaduanModel->getPengaduan($id_pengaduan);
+        if ($pengaduan) {
+            $data = ([
+                'pengaduan' => $pengaduan
+            ]);
+            return view('user/detail-pengaduan-print', $data);
+        } else {
+            return redirect()->to(base_url('/user/home'));
+        }
+    }
 
 
 

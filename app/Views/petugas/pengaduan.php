@@ -57,7 +57,7 @@
                                         </td>
                                         <td class="mailbox-star text-left">
                                             <?php if ($p->status == 'terkirim') { ?>
-                                                <span class="text-danger">Terkirim</span>
+                                                <span class="text-info">Terkirim</span>
 
                                                 <!-- // -->
                                             <?php  } elseif ($p->status == 'terverifikasi') { ?>
@@ -70,6 +70,10 @@
                                                 <!-- // -->
                                             <?php  } elseif ($p->status == 'selesai') { ?>
                                                 <span class="text-success">Selesai</span>
+
+                                                <!-- // -->
+                                            <?php  } elseif ($p->status == 'ditolak') { ?>
+                                                <span class="text-danger">Ditolak</span>
 
                                                 <!-- // -->
                                             <?php  } ?>

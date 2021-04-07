@@ -130,7 +130,6 @@
             </div>
         </div>
     </div>
-    </div>
 </section>
 
 <?php $this->endsection('content'); ?>

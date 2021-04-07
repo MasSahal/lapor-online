@@ -11,13 +11,16 @@
     <style>
         * {
             font-family: Helvetica, Arial, Segoe UI, Segoe UI Emoji;
-
+            text-align: left;
         }
 
         table {
-            background: #fafafa;
-            position: center;
             border-collapse: collapse;
+        }
+
+        tr,
+        td {
+            padding: 5px 10px;
         }
 
         .text-center {
@@ -26,27 +29,61 @@
             margin-bottom: 20px;
         }
 
-        .mr-5 {
+        .mt-5 {
             margin-top: 50px;
         }
     </style>
 </head>
 
 <body>
-    <div class="mr-5">
+    <div class="mt-5">
         <table class="table">
             <tr>
-                <th>Subjek</th>
-                <td>:</td>
-                <td>
-                    <?= $pengaduan->subjek_pengaduan; ?>
-                </td>
-            </tr>
-            <tr>
-                <th>Dari</th>
+                <th>Pelapor</th>
                 <td>:</td>
                 <td>
                     <?= $pengaduan->nama; ?>
+                </td>
+            </tr>
+            <tr>
+                <th>NIK</th>
+                <td>:</td>
+                <td>
+                    <?= $pengaduan->nik; ?>
+                </td>
+            </tr>
+            <tr>
+                <th>Kategori</th>
+                <td>:</td>
+                <td>
+                    <?= $pengaduan->kategori; ?>
+                </td>
+            </tr>
+            <tr class="py-4">
+                <th>Status</th>
+                <td>:</td>
+                <td>
+                    <?php if ($pengaduan->status == 'terkirim') { ?>
+                        <span class="text-info">Terkirim</span>
+
+                        <!-- // -->
+                    <?php  } elseif ($pengaduan->status == 'terverifikasi') { ?>
+                        <span class="text-warning">Terverifikasi</span>
+
+                        <!-- // -->
+                    <?php  } elseif ($pengaduan->status == 'diproses') { ?>
+                        <span class="text-primary">Sedang Diproses</span>
+
+                        <!-- // -->
+                    <?php  } elseif ($pengaduan->status == 'selesai') { ?>
+                        <span class="text-success">Selesai</span>
+
+                        <!-- // -->
+                    <?php  } elseif ($pengaduan->status == 'ditolak') { ?>
+                        <span class="text-danger">Pengaduan Ditolak</span>
+
+                        <!-- // -->
+                    <?php  } ?>
                 </td>
             </tr>
         </table>

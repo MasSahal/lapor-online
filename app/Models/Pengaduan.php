@@ -33,6 +33,7 @@ class Pengaduan extends Model
             $this->db->table($this->table);
             $this->select('*');
             $this->join('masyarakat', 'pengaduan.nik = masyarakat.nik');
+            $this->join('kategori_pengaduan', 'pengaduan.id_kategori = kategori_pengaduan.id_kategori');
             $this->where($this->table . '.id_pengaduan', $id);
             $hasil = $this->get();
             return $hasil->getRowObject();
@@ -63,6 +64,7 @@ class Pengaduan extends Model
             $this->db->table($this->table);
             $this->select('*');
             $this->join('masyarakat', 'pengaduan.nik = masyarakat.nik');
+            // $this->join('kategori', 'pengaduan.id_kategori = kategori.id_kategori');
             $this->where($this->table . '.nik', $nik);
             $hasil = $this->get();
             return $hasil->getResultObject();
@@ -71,6 +73,7 @@ class Pengaduan extends Model
             $this->select('*');
             $this->where($this->table . '.nik', $nik);
             $this->join('masyarakat', 'pengaduan.nik = masyarakat.nik');
+            // $this->join('kategori', 'pengaduan.id_kategori = kategori.id_kategori');
             $this->where($this->table . '.status', $status);
             $hasil = $this->get();
             return $hasil->getResultObject();

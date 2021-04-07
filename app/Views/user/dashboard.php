@@ -79,6 +79,7 @@
                         <div class="form-group">
                             <label for="file">Masukan Foto</label>
                             <input type="file" class="form-control-file btn btn-default rounded-0" name="file" id="file" placeholder="">
+                            <small>PNG | JPG</small>
                         </div>
                         <br>
                         <div class="row">
@@ -133,7 +134,7 @@
                 </div>
                 <br>
                 <center class="pb-4">
-                    <a href="<?= base_url('/user/about') ?>" class="btn btn-flat btn-outline-info">Pelajari Lebih Lanjut</a>
+                    <a href="<?= base_url('/user/syarat-ketentuan') ?>" class="btn btn-flat btn-outline-info">Pelajari Lebih Lanjut</a>
                 </center>
                 <br>
             </div>
@@ -156,52 +157,6 @@
     </div>
 </div>
 
-
-
-
-<!-- Modal -->
-<div class="modal fade" id="info" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content rounded-0">
-            <div class="modal-header">
-                <h5>Tata cara pelaporan pengaduan</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>
-                    Untuk mengirim aduan melalui aplikasi LAPOR!, baik di android maupun iOS, masyarakat mesti melakukan sejumlah langkah sebagaimana perincian berikut ini.
-                </p>
-                <p>
-                    Pertama, untuk login ke aplikasi LAPOR! milik Kementerian ATR/BPN, masyarakat harus mendaftar terlebih dahulu menggunakan email, facebook atau twitter.
-                </p>
-                Kedua, selanjutnya pilih jenis laporan sesuai kebutuhan, baik berupa pengaduan, aspirasi ataupun permintaan informasi, yang akan diteruskan ke instansi terkait.
-                <p>
-                    Ketiga, mengisi blangko dengan bahasa Indonesia yang baik dan benar.
-                </p>
-                <p>
-                    Keempat, selanjutnya warga pelapor akan mendapatkan tracking id untuk memantau laporan yang diajukan.
-                </p>
-                <p>
-                    Kelima, warga pelapor pun diperkenankan memilih kategori secara spesifik. Pada tahap ini, warga bisa memilih kategori "anonim" jika tidak ingin diketahui namanya, atau memilih kategori "rahasia" apabila aduan berisi identitas atau alamat pribadi.
-                </p>
-                <p>
-                    Keenam, jika ada lampiran yang hendak dikirim oleh warga, aplikasi Lapor! menyediakan kolom untuk mengunggah lampiran.
-                </p>
-                <p>
-                    Ketujuh, jika semua kolom di aplikasi Lapor! sudah terisi, warga dapat mengirimkan aduan atau laporannya.
-                </p>
-                <p>
-                    Setelah menuliskan pengaduan, keluhan atau aspirasi, dokumen masyarakat akan diverifikasi dan diteruskan kepada instansi yang berwenang menanganinya dalam waktu tiga hari.
-                </p>
-                <p>
-                    Kemudian, dalam 5 hari, instansi terkait akan menindaklanjuti dan membalas laporan yang telah diajukan oleh warga. Setelah ada balasan, warga dapat menanggapi lagi balasan dari instansi itu, dalam waktu 10 hari. Laporan akan terus ditindaklanjuti sampai terselesaikan.
-                </p>
-            </div>
-        </div>
-    </div>
-</div>
 <?php $this->endsection('content'); ?>
 
 <?php $this->section('js'); ?>
