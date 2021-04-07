@@ -166,7 +166,7 @@
 
                                 <!-- Modal -->
                                 <div class="modal fade" id="detail" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-                                    <div class="modal-dialog modal-lg" role="document">
+                                    <div class="modal-dialog" role="document">
                                         <div class="modal-content rounded-0">
                                             <div class="modal-header">
                                                 <h5 class="modal-title">Foto Pengaduan</h5>
@@ -215,7 +215,7 @@
                                                 <th>Alasan</th>
                                                 <td>:</td>
                                                 <td>Pengaduan tidak sesuai dengan ketentuan layanan pengaduan yang berlaku.
-                                                    <a href="#">Syarat dan ketentuan</a>
+                                                    <a href="<?= base_url('/user/syarat-ketentuan') ?>">Syarat dan ketentuan</a>
                                                 </td>
                                             </tr>
                                         </table>
@@ -226,8 +226,8 @@
                         <?php }; ?>
 
                         <!-- button print dan delete -->
-                        <div class="card-footer">
-                            <?php if ($pengaduan->status == 'terkirim') { ?>
+                        <?php if ($pengaduan->status == 'terkirim') { ?>
+                            <div class="card-footer">
                                 <button type="button" class="btn btn-default" data-toggle="modal" data-target="#hapus"><i class="far fa-trash-alt"></i> Delete</button>
 
                                 <!-- Modal tandai selesai -->
@@ -250,9 +250,9 @@
                                         </div>
                                     </div>
                                 </div>
-                            <?php }; ?>
-                            <a href="<?= base_url('/user/pengaduan-saya/' . $pengaduan->id_pengaduan . '/print') ?>" class="btn btn-default" target="_blank"><i class="fas fa-print"></i> Print</a>
-                        </div>
+                            </div>
+
+                        <?php }; ?>
                         <!-- /.card-footer -->
                     </div>
                 </div>

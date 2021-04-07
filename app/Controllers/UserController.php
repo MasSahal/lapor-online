@@ -40,10 +40,13 @@ class UserController extends BaseController
             //cek tanggapan
             $cek_tanggapan = $this->tanggapanModel->getTanggapanWithPetugas($id_pengaduan);
             if (!$cek_tanggapan) {
-                return redirect()->to(base_url('/user/pengaduan-saya'));
+                // echo "tanggapan gada";
+                $tanggapan = false;
+                // return redirect()->to(base_url('/user/pengaduan-saya'));
             }
 
             if (!$cek) {
+                // echo "ditolak sakit";
                 return redirect()->to(base_url('/user/pengaduan-saya'));
             }
 

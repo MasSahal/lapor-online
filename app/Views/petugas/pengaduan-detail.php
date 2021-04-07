@@ -111,15 +111,17 @@
 
                     <!-- Modal detail foto -->
                     <div class="modal fade" id="detail" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-                        <div class="modal-dialog modal-lg" role="document">
-                            <div class="modal-header">
-                                <h5 class="modal-title">Foto Pengaduan</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <i class="fa fa-times" aria-hidden="true"></i>
-                                </button>
-                            </div>
+                        <div class="modal-dialog" role="document">
                             <div class="modal-content">
-                                <img data-dismiss="modal" aria-label="Close" src="<?= base_url('/public/img/pengaduan/' . $pengaduan->foto) ?>" class="img-fluid" alt="<?= $pengaduan->foto ?>">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Foto Pengaduan</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <i class="fa fa-times" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <img data-dismiss="modal" aria-label="Close" src="<?= base_url('/public/img/pengaduan/' . $pengaduan->foto) ?>" class="img-fluid" alt="<?= $pengaduan->foto ?>">
+                                </div>
                             </div>
                         </div>
                     </div>
