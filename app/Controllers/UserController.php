@@ -180,6 +180,21 @@ class UserController extends BaseController
         }
     }
 
+    public function selesaikan_pengaduan()
+    {
+        $id_pengaduan = $this->request->getPost('id_pengaduan');
+        $data = (["status" => 'selesai']);
+        $upp = $this->pengaduanModel->update($id_pengaduan, $data);
+
+        if ($upp) {
+            $this->session->setFlashdata("msg_suc", "Selamat, Pengaduan berhasil diselesaikan !");
+            return redirect()->to(base_url('/user/pengaduan-saya?detail=' . $id_pengaduan));
+        } else {
+            $this->session->setFlashdata("msg_err", "Maaf, Pengaduan tidak berhasil diselesaikan !");
+            return redirect()->to(base_url('/user/pengaduan-saya?detail=' . $id_pengaduan));
+        }
+    }
+
 
 
     //profile admin

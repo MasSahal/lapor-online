@@ -32,6 +32,10 @@
 <div class="row">
     <div class="col-12">
         <div class="card rounded-0">
+            <div class="card-header bg-light">
+                <span>Data Admin</span>
+                <button type="button" class="btn btn-sm text-muted float-right" data-toggle="modal" data-target="#tambah"><i class="fa fa-plus mr-2" aria-hidden="true"></i>Tambah</button>
+            </div>
             <div class="card-body">
                 <table class="table table-stripped table-head-fixed" id="table">
                     <thead>
@@ -54,8 +58,8 @@
                                 <td><?= $a->email ?></td>
                                 <td><?= $a->telp ?></td>
                                 <td>
-                                    <a href="#" class="badge badge-warning" id="edit" data-toggle="modal" data-target="#edit_<?= $a->id_petugas; ?>">Edit</a>
-                                    <a href="#" class="badge badge-danger" id="hapus" data-toggle="modal" data-target="#hapus_<?= $a->id_petugas; ?>">Hapus</a>
+                                    <a href="#" class="badge badge-warning" id="edit" data-toggle="modal" data-target="#edit_<?= $a->id_petugas; ?>" <?= ($a->id_petugas == session()->id_petugas) ? "disabled" : ""; ?>>Edit</a>
+                                    <a href="#" class="badge badge-danger" id="hapus" data-toggle="modal" data-target="#hapus_<?= $a->id_petugas; ?>" <?= ($a->id_petugas == session()->id_petugas) ? "disabled" : ""; ?>>Hapus</a>
                                 </td>
                             </tr>
 
@@ -123,9 +127,6 @@
                         <?php }; ?>
                     </tbody>
                 </table>
-            </div>
-            <div class="card-footer">
-                <button type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#tambah"><i class="fa fa-plus mr-2" aria-hidden="true"></i>Tambah</button>
             </div>
         </div>
     </div>

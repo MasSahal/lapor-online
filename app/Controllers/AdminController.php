@@ -523,4 +523,13 @@ class AdminController extends BaseController
             return redirect()->to(base_url('/admin/my-profile'));
         }
     }
+
+
+    //syarat dan ketentuan
+    public function ketentuan()
+    {
+        $data['act'] = "Ketentuan";
+        $data['title'] = "Syarat Dan Ketentuan - Lapor Online";
+        return view('admin/syarat-ketentuan', $data);
+    }
 }

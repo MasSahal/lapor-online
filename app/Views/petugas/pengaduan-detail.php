@@ -141,7 +141,7 @@
                         <div class=" modal-dialog border-radius-0" role="document">
                             <div class="modal-content rounded-0">
                                 <div class="modal-body">
-                                    <form action="<?= base_url('admin/pengaduan/verifikasi') ?>" method="post">
+                                    <form action="<?= base_url('petugas/pengaduan/verifikasi') ?>" method="post">
                                         <div class="text-center p-3">
                                             <strong>Yakin ingin memverifikasi pengaduan <span class="text-muted">"<?= get_small_char($pengaduan->subjek_pengaduan, 30); ?>"</span> ?</strong>
                                             <br>
@@ -162,7 +162,7 @@
                         <div class="modal-dialog border-radius-0" role="document">
                             <div class="modal-content rounded-0">
                                 <div class="modal-body">
-                                    <form action="<?= base_url('admin/pengaduan/tolak') ?>" method="post">
+                                    <form action="<?= base_url('petugas/pengaduan/tolak') ?>" method="post">
                                         <div class="text-center p-3 m-3">
                                             <strong>Yakin ingin menolak pengaduan <span class="text-muted">"<?= get_small_char($pengaduan->subjek_pengaduan, 25); ?>"</span> ?</strong>
                                             <br>
@@ -206,7 +206,7 @@
             <?php } elseif ($pengaduan->status == 'diproses') {; ?>
                 <div class="card-footer">
                     <div class="row">
-                        <div class="col-md-8 col-sm-12">
+                        <div class="col-md-6 col-sm-12">
                             <table class="table table-sm table-borderless">
                                 <tr>
                                     <th>Ditanggapi Oleh</th>
@@ -226,33 +226,8 @@
                     </div>
                 </div>
                 <hr class="m-0">
-                <div class=" card-footer">
-                    <a href=" <?= base_url('/petugas/pengaduan/' . $pengaduan->id_pengaduan . '/print') ?>" target="_blank" class="btn btn-default"><i class="fa fa-print"></i> Print</a>
-                    <div class="float-right">
-                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#selesai"><i class="fa fa-check fa-fw"></i> Tandai Telah Selesai</button>
-                    </div>
-
-                    <!-- Modal tandai selesai -->
-                    <div class="modal fade" id="selesai" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-                        <div class=" modal-dialog border-radius-0" role="document">
-                            <div class="modal-content rounded-0">
-                                <div class="modal-body">
-                                    <form action="<?= base_url('/petugas/pengaduan/selesaikan') ?>" method="post">
-                                        <div class="text-center p-3">
-                                            <strong>Tandai telah diselesaikan pengaduan <span class="text-muted">"<?= get_small_char($pengaduan->subjek_pengaduan, 30); ?>"</span> ?</strong>
-                                            <br>
-                                            <small>Tidakan tidak dapat diurungkan!</small>
-                                            <br><br>
-                                            <input type="hidden" name="id_pengaduan" value="<?= $pengaduan->id_pengaduan; ?>">
-                                            <button class="btn btn-outline-secondary" data-dismiss="modal" aria-label="Close">Batalkan</button>
-                                            &nbsp;
-                                            <button type="submit" class="btn btn-success">Selesaikan Sekarang!</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="card-footer">
+                    <span class="text-muted">Menunggu Konfirmasi Selesai dari Pelapor.</span>
                 </div>
             <?php } elseif ($pengaduan->status == 'selesai') { ?>
                 <div class="card-footer">
@@ -272,7 +247,7 @@
                             </table>
                         </div>
                     </div>
-                    <div class="card p-3 shadow-none">
+                    <div class="card p-3 shadow-none border">
                         <p><?= str_break($tanggapan->tanggapan); ?></p>
                     </div>
                 </div>

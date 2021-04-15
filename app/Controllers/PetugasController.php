@@ -134,6 +134,21 @@ class PetugasController extends BaseController
     }
 
 
+    public function tolak_pengaduan()
+    {
+        $id_pengaduan = $this->request->getPost('id_pengaduan');
+        $data = (["status" => 'ditolak']);
+        $upp = $this->pengaduanModel->update($id_pengaduan, $data);
+
+        if ($upp) {
+            $this->session->setFlashdata("msg_suc", "Selamat, Pengaduan berhasil ditolak !");
+            return redirect()->to(base_url('/petugas/pengaduan/' . $id_pengaduan . '/detail'));
+        } else {
+            $this->session->setFlashdata("msg_err", "Maaf, Pengaduan tidak berhasil ditolak !");
+            return redirect()->to(base_url('/petugas/pengaduan/' . $id_pengaduan . '/detail'));
+        }
+    }
+
     public function verifikasi_pengaduan()
     {
         $id_pengaduan = $this->request->getPost('id_pengaduan');
@@ -325,5 +340,14 @@ class PetugasController extends BaseController
             $this->session->setFlashdata('msg_err', 'Maaf, Password tidak berhasil diubah ');
             return redirect()->to(base_url('/petugas/my-profile'));
         }
+    }
+
+
+    //syarat dan ketentuan
+    public function ketentuan()
+    {
+        $data['act'] = "Ketentuan";
+        $data['title'] = "Syarat Dan Ketentuan - Lapor Online";
+        return view('petugas/syarat-ketentuan', $data);
     }
 }

@@ -56,6 +56,7 @@ $routes->group('user', ['filter' => 'ceklogin'], function ($routes) {
 	$routes->get('log-out', 'HomeController::log_out');
 
 	$routes->post('pengaduan/insert', 'UserController::insert_pengaduan');
+	$routes->post('pengaduan/selesaikan', 'UserController::selesaikan_pengaduan');
 	$routes->post('pengaduan/delete', 'UserController::delete_pengaduan');
 	$routes->post('pengaduan/print', 'UserController::print_pengaduan');
 
@@ -70,11 +71,13 @@ $routes->group('user', ['filter' => 'ceklogin'], function ($routes) {
 $routes->group('petugas', ['filter' => 'ceklogin'], function ($routes) {
 	$routes->get('dashboard', 'PetugasController::index');
 	$routes->get('logout', 'HomeController::log_out');
+	$routes->get('syarat-ketentuan', 'PetugasController::ketentuan');
 
 	//data laporan
 	$routes->get('pengaduan', 'PetugasController::data_pengaduan');
 	$routes->get('pengaduan/print', 'PetugasController::print_pengaduan');
 	$routes->get('pengaduan/(:num)/detail', 'PetugasController::detail_pengaduan/$1');
+	$routes->post('pengaduan/tolak', 'PetugasController::tolak_pengaduan');
 	$routes->post('pengaduan/verifikasi', 'PetugasController::verifikasi_pengaduan');
 	$routes->post('pengaduan/kirim-tanggapan', 'PetugasController::kirim_tanggapan');
 	$routes->post('pengaduan/selesaikan', 'PetugasController::selesaikan_pengaduan');
@@ -99,6 +102,8 @@ $routes->group('admin', ['filter' => 'ceklogin'], function ($routes) {
 	$routes->get('dashboard', 'AdminController::index');
 	$routes->get('logout', 'HomeController::log_out');
 	$routes->get('pdf', 'AdminController::export');
+	$routes->get('syarat-ketentuan', 'AdminController::ketentuan');
+
 
 	//account user
 	$routes->get('account/users', 'AdminController::account_users');

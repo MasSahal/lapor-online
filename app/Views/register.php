@@ -36,7 +36,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <form action="<?= base_url('/register-member') ?>" method="post" id="form-validate">
                     <div class="form-group mb-3">
                         <label for="nik">NIK</label>
-                        <input type="number" class="form-control rounded-0" name="nik" id="nik" pattern="[0-9]{16}" tittle="Masukan Nik dengan benar!">
+                        <input type="number" class="form-control rounded-0" name="nik" id="nik" pattern="[0-9]{16}" title="Masukan NIK dengan benar!">
                     </div>
 
                     <div class="form-group mb-3">

@@ -32,6 +32,10 @@
 <div class="row">
     <div class="col-12">
         <div class="card rounded-0">
+            <div class="card-header bg-light">
+                <span>Data Petugas</span>
+                <button type="button" class="btn btn-sm text-muted float-right" data-toggle="modal" data-target="#tambah"><i class="fa fa-plus mr-2" aria-hidden="true"></i>Tambah</button>
+            </div>
             <div class="card-body">
                 <table class="table table-stripped table-head-fixed" id="table">
                     <thead>
@@ -124,9 +128,7 @@
                     </tbody>
                 </table>
             </div>
-            <div class="card-footer">
-                <button type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#tambah"><i class="fa fa-plus mr-2" aria-hidden="true"></i>Tambah</button>
-            </div>
+
         </div>
     </div>
 </div>

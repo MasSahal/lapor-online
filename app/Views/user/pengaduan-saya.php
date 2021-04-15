@@ -156,7 +156,7 @@
                                     <div class="mailbox-attachment-info">
                                         <a href="#" class="mailbox-attachment-name" data-toggle="modal" data-target="#detail"><i class="fas fa-image "></i> Image.jpg</a>
                                         <span class="mailbox-attachment-size clearfix mt-1">
-                                            <span><?= format_size(filesize(ROOTPATH . 'public/img/pengaduan/' . $pengaduan->foto)) ?>b</span>
+                                            <span><?= format_size(filesize(ROOTPATH . 'public/img/pengaduan/' . $pengaduan->foto)) ?></span>
                                             <a href="<?= base_url('/public/img/pengaduan/' . $pengaduan->foto) ?>" download="<?= $pengaduan->foto; ?>" class="btn btn-default btn-sm float-right" id="download" title="Download Image">
                                                 <i class="fas fa-cloud-download-alt"></i>
                                             </a>
@@ -206,6 +206,56 @@
                                 </div>
                             </div>
                             <hr class="m-0">
+                        <?php } elseif ($pengaduan->status == 'diproses') {; ?>
+                            <div class="card-footer">
+                                <div class="row">
+                                    <div class="col-md-8 col-sm-12">
+                                        <table class="table table-sm table-borderless">
+                                            <tr>
+                                                <th>Ditanggapi Oleh</th>
+                                                <td>:</td>
+                                                <td><?= $tanggapan->nama_petugas; ?></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Tanggal</th>
+                                                <td>:</td>
+                                                <td><?= $tanggapan->tgl_tanggapan; ?></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="card p-3 shadow-none border">
+                                    <p><?= str_break($tanggapan->tanggapan); ?></p>
+                                </div>
+                            </div>
+                            <hr class="m-0">
+                            <div class=" card-footer">
+                                <div class="float-right">
+                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#selesai"><i class="fa fa-check fa-fw"></i> Tandai Telah Selesai</button>
+                                </div>
+
+                                <!-- Modal tandai selesai -->
+                                <div class="modal fade" id="selesai" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                                    <div class=" modal-dialog border-radius-0" role="document">
+                                        <div class="modal-content rounded-0">
+                                            <div class="modal-body">
+                                                <form action="<?= base_url('user/pengaduan/selesaikan') ?>" method="post">
+                                                    <div class="text-center p-3">
+                                                        <strong>Tandai telah diselesaikan pengaduan <span class="text-muted">"<?= get_small_char($pengaduan->subjek_pengaduan, 30); ?>"</span> ?</strong>
+                                                        <br>
+                                                        <small>Tidakan tidak dapat diurungkan!</small>
+                                                        <br><br>
+                                                        <input type="hidden" name="id_pengaduan" value="<?= $pengaduan->id_pengaduan; ?>">
+                                                        <button class="btn btn-outline-secondary" data-dismiss="modal" aria-label="Close">Batalkan</button>
+                                                        &nbsp;
+                                                        <button type="submit" class="btn btn-success">Selesaikan Sekarang!</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         <?php } elseif ($pengaduan->status == 'ditolak') { ?>
                             <div class="card-footer bg-soft-danger">
                                 <div class="row">

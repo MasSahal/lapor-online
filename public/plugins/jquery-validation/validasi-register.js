@@ -7,12 +7,7 @@ $(document).ready(function () {
       rules: {
         nik: {
           required: true,
-          minlength: 16,
-        },
-        username: {
-          required: true,
-          minlength: 3,
-          maxlength: 30,
+          digits: true,
         },
         email: {
           required: true,
@@ -29,12 +24,7 @@ $(document).ready(function () {
       messages: {
         nik: {
           required: "Kolom NIK wajib di isi!",
-          minlength: "Masukan NIK dengan benar!",
-        },
-        username: {
-          required: "Kolom nama wajib di isi!",
-          minlength: "Nama terlalu pendek",
-          maxlength: "Nama terlalu panjang",
+          digits: "Masukan 16 digit NIK dengan benar!",
         },
         email: {
           required: "Kolom email wajib di isi!",

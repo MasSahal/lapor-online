@@ -140,6 +140,15 @@
 								</p>
 							</a>
 						</li>
+						<li class="nav-header">LAINNYA</li>
+						<li class="nav-item">
+							<a href="<?= base_url('admin/syarat-ketentuan') ?>" class="nav-link <?= ($act == "Ketentuan") ? "active" : "" ?>">
+								<i class="nav-icon fa fa-info-circle" aria-hidden="true"></i>
+								<p>
+									Syarat dan Ketentuan
+								</p>
+							</a>
+						</li>
 					</ul>
 				</nav>
 			</div>
