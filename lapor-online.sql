@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 15, 2021 at 03:42 AM
+-- Generation Time: Apr 18, 2021 at 04:40 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 8.0.3
 
@@ -67,7 +67,7 @@ CREATE TABLE `masyarakat` (
 
 INSERT INTO `masyarakat` (`nik`, `nama`, `email`, `username`, `password`, `telp`) VALUES
 ('1234567890123456', 'Hilyah Kamilah', 'hilyah@localhost.com', 'hilyahkamilah', '$2y$10$eQpXTVvWbxe1k.JU26QeXuDUYATr1eMzuOfMDf6.4LYdw2slPLJtC', '08232323'),
-('7777777777777777', 'Nashiruddin Sahal', 'nashiruddin@localhost.com', 'nashiruddin.sahal', '$2y$10$xte5sAHEYsSgcoP7Eo5WEu2kv60kGAURqqx4KzoHfX5fV2atDlw4.', '32432423');
+('7777777777777777', 'Nashiruddin Sahal', 'user@localhost.com', 'nashiruddin.sahal', '$2y$10$8TxHYT8VkY5rsRSWrJwVxeMNVz9/rXpMPdg89piMp8ZOkaFEb.RUG', '32432423');
 
 -- --------------------------------------------------------
 
@@ -194,7 +194,7 @@ ALTER TABLE `kategori_pengaduan`
 -- AUTO_INCREMENT for table `pengaduan`
 --
 ALTER TABLE `pengaduan`
-  MODIFY `id_pengaduan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_pengaduan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `petugas`
