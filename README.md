@@ -9,25 +9,25 @@ This repository holds the distributable version of the framework,
 including the user guide. It has been built from the
 [development repository](https://github.com/codeigniter4/CodeIgniter4).
 
-# **Mohon Baca** Panduan singkat! Data Pengguna Aplikasi Lapor-Online
+## **Mohon Baca** Panduan singkat! Data Pengguna Aplikasi Lapor-Online
 
-## Akun Masyarakat
+### Akun Masyarakat
 
-NIK : 7777777777777777
-EMAIL : user@localhost.com
-PASS : user@localhost.com
+- NIK : 7777777777777777
+- EMAIL : user@localhost.com
+- PASS : user@localhost.com
 
-## Akun Petugas
+### Akun Petugas
 
-EMAIL : petugas@localhost.com
-PASS : petugas@localhost.com
+- EMAIL : petugas@localhost.com
+- PASS : petugas@localhost.com
 
-## Akun Admin
+### Akun Admin
 
-EMAIL : admin@localhost.com
-PASS : admin@localhost.com
+- EMAIL : admin@localhost.com
+- PASS : admin@localhost.com
 
-# Server Requirements
+## Server Requirements
 
 PHP version 7.3 or higher is required, with the following extensions installed:
 
