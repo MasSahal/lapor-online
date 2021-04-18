@@ -232,6 +232,16 @@ class UserController extends BaseController
         // dd($data);
         $upp = $this->userModel->update($nik, $data);
         if ($upp) {
+
+            //buat session
+            $ses = ([
+                'nama'             => $name,
+                'username'         => $username,
+                'email'            => $email
+            ]);
+            // perbarui sesi
+            $this->session->set($ses);
+
             $this->session->setFlashdata('msg_suc', 'Berhasil memperbarui profile!');
             return redirect()->to(base_url('/user/profile'));
         } else {

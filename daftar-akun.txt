@@ -1,0 +1,21 @@
+Akun Masyarakat
+NIK : 7777777777777777
+EMAIL : user@localhost.com
+PASS : user@localhost.com
+
+Akun Petugas
+EMAIL : petugas@localhost.com
+PASS : petugas@localhost.com
+
+Akun Admin
+EMAIL : admin@localhost.com
+PASS : admin@localhost.com
+
+
+Standar Instalasi
+1. Ekstrak file program dan letakan di local server/hosting
+2. Sesuaikan base url program di folder /App/Config/App.php
+3. Masukan database ke phpmyadmin beri nama lapor-online
+4. Uji coba program, jika terjadi kendala cobalah bersihkan tabel pengaduan dan tabel tanggapan
+5. Jalankan kembali program
+6. Jika masih terkendala harap hubungi developer abusahl444@gmail.com

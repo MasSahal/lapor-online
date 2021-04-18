@@ -313,6 +313,15 @@ class PetugasController extends BaseController
         $upp = $this->adminModel->update($id_petugas, $data);
 
         if ($upp) {
+
+            // perbarui sesi
+            $ses = ([
+                'nama'             => $name,
+                'username'         => $username,
+                'email'            => $email
+            ]);
+            // perbarui sesi
+            $this->session->set($ses);
             $this->session->setFlashdata('msg_suc', 'Berhasil memperbarui profile!');
             return redirect()->to(base_url('/petugas/my-profile'));
         } else {

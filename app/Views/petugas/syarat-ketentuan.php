@@ -7,7 +7,7 @@
     </div><!-- /.col -->
     <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="<?= base_url('/petugas/dashboard') ?>">Home</a></li>
+            <li class="breadcrumb-item"><a href="<?= base_url('/petugas/dashboard') ?>">Dashboard</a></li>
             <li class="breadcrumb-item active">Syarat dan Ketentuan</li>
         </ol>
     </div>
