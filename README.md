@@ -21,18 +21,18 @@ including the user guide. It has been built from the
 ### Akun Masyarakat
 
 - NIK : 7777777777777777
-- EMAIL : user@localhost.com
-- PASS : user@localhost.com
+- Email : user@localhost.com
+- Pass : user@localhost.com
 
 ### Akun Petugas
 
-- EMAIL : petugas@localhost.com
-- PASS : petugas@localhost.com
+- Email : petugas@localhost.com
+- Pass : petugas@localhost.com
 
 ### Akun Admin
 
-- EMAIL : admin@localhost.com
-- PASS : admin@localhost.com
+- Email : admin@localhost.com
+- Pass : admin@localhost.com
 
 # Server Requirements
 
