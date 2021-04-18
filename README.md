@@ -9,25 +9,32 @@ This repository holds the distributable version of the framework,
 including the user guide. It has been built from the
 [development repository](https://github.com/codeigniter4/CodeIgniter4).
 
-## **Mohon Baca** Panduan singkat! Data Pengguna Aplikasi Lapor-Online
+## **Mohon Baca** Panduan fix instalasi singkat!
+
+1. Ekstrak file program dan letakan di local server/hosting
+2. Sesuaikan base url program di folder /App/Config/App.php
+3. Masukan database ke phpmyadmin beri nama lapor-online
+4. Uji coba program, jika terjadi kendala cobalah bersihkan tabel pengaduan dan tabel tanggapan
+5. Jalankan kembali program
+6. Jika masih terkendala harap hubungi developer abusahl444@gmail.com
 
 ### Akun Masyarakat
 
 - NIK : 7777777777777777
-- EMAIL : user@localhost.com
-- PASS : user@localhost.com
+- Email : user@localhost.com
+- Pass : user@localhost.com
 
 ### Akun Petugas
 
-- EMAIL : petugas@localhost.com
-- PASS : petugas@localhost.com
+- Email : petugas@localhost.com
+- Pass : petugas@localhost.com
 
 ### Akun Admin
 
-- EMAIL : admin@localhost.com
-- PASS : admin@localhost.com
+- Email : admin@localhost.com
+- Pass : admin@localhost.com
 
-## Server Requirements
+# Server Requirements
 
 PHP version 7.3 or higher is required, with the following extensions installed:
 
